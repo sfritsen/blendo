@@ -40,7 +40,7 @@ main {
     justify-content: start;
 }
 
-div[class*=" col"] {
+.col1, .col2, .col3 {
     flex-grow: 1;
 }
 
