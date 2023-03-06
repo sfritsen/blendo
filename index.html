@@ -8,13 +8,21 @@
     <title>Blendo - Color Picker</title>
 </head>
 <body>
-    <header>Logo and controls</header>
+    <header>
+        <div class="logo">Blendo</div>
+    </header>
     <main>
-        <div class="container">
-            <div class="col1">Col1</div>
-            <div class="col2">Col2</div>
-            <div class="col3">Col3</div>
+        <div class="child col1">Maybe Info</div>
+        <div class="child col2">
+            <input id="color1" placeholder="Color 1">
+            <input id="color2" placeholder="Color 2">
+            <select id="numberOfBlends">
+                <option id="1">1</option>
+                <option id="2">2</option>
+                <option id="3">3</option>
+            </select>
         </div>
+        <div class="child col3">Color swatches here vertical</div>
     </main>
     <footer>footer</footer>
 </body>
