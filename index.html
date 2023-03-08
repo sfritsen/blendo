@@ -23,14 +23,37 @@
                 <input id="color1" placeholder="Color 1">
                 <input id="color2" placeholder="Color 2">
                 <select id="numberOfBlends">
+                    <option>Number of Blends</option>
                     <option id="1">1</option>
                     <option id="2">2</option>
                     <option id="3">3</option>
                 </select>
             </div>
-            <div class="col col-swatches">Color swatches here vertical</div>
+            <div class="col col-swatches">
+                <div id="s-color1"></div>
+                <div id="s-color2"></div>
+            </div>
         </main>
         <footer>Buy Marc a coffee</footer>
     </div>
 </body>
 </html>
+
+<script type="text/javascript">
+    document.getElementById("numberOfBlends").addEventListener('change', (e) => {
+
+        // Get color1 and color2
+        const color1 = document.getElementById("color1").value;
+        const color2 = document.getElementById("color2").value;
+
+        // Load into initial swatches
+        let swStart = document.getElementById('s-color1');
+        swStart.innerHTML = "#"+color1;
+        swStart.style.backgroundColor = `#${color1}`;
+
+        let swEnd = document.getElementById('s-color2');
+        swEnd.innerHTML = "#"+color2;
+        swEnd.style.backgroundColor = `#${color2}`;
+    });
+    
+</script>
