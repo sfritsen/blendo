@@ -69,7 +69,7 @@
         swatches.appendChild(toAdd);
 
         function findMidpointColors(color1, color2, numberOfBlends) {
-            var steps = numberOfBlends; // number of steps to blend
+            var steps = Number(numberOfBlends) + 1; // number of steps to blend
             var stepSize = 1 / steps; // size of each step
 
             // Convert the hex color strings to RGB values
@@ -85,7 +85,7 @@
             var colors = [];
 
             // Add color1 to array
-            // colors.push(color1);
+            colors.push(color1);
 
             // Loop through the steps and find the midpoint colors
             for (var i = 1; i <= steps; i++) {
