@@ -65,12 +65,21 @@
         // Create fragment to append after foreach
         var toAdd = document.createDocumentFragment();
 
+        // console.log(numberOfBlends.value);
+        let totalDivs = Number(numberOfBlends.value) + 2;
+
         // Loop through returned array and build divs for each
         midpointColors.forEach((value) => {
+
+            // Calculate height percentage for every needed new div
+            const divPercentage = Math.round((100 / Number(totalDivs)) * 100) / 100;
+
+            // Create divs
             var newDiv = document.createElement('div');
             newDiv.id = 'div'+value;
             newDiv.innerHTML = isLightColor(value);
             newDiv.style.backgroundColor = value;
+            newDiv.style.height = divPercentage+'%';
             toAdd.appendChild(newDiv);
         });
 
