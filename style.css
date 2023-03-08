@@ -70,16 +70,18 @@ main {
 }
 .col-swatches {
     /* background: lightgreen; */
-    padding: var(--col-padding);
+    /* padding: var(--col-padding); */
 }
 
 .col-swatches > div {
     border: 2px solid #212121;
-    border-radius: 10px;
+    border-bottom: 1px;
+    /* border-radius: 10px; */
     font-weight: bold;
+    text-transform: uppercase;
     padding: 12px;
     text-align: center;
-    margin-bottom: 4px;
+    /* margin-bottom: 4px; */
 
 }
 
