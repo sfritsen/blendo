@@ -41,23 +41,39 @@
     document.getElementById("numberOfBlends").addEventListener('change', (e) => {
 
         // Get color1 and color2 and swatches container
-        const color1 = "#"+document.getElementById("color1").value;
-        const color2 = "#"+document.getElementById("color2").value;
-        let numberOfBlends = document.getElementById("numberOfBlends");
-        // numberOfBlends.value = numberOfBlends.value + 1;
+        const color1 = document.getElementById("color1").value;
+        const color2 = document.getElementById("color2").value;
         let swatches = document.getElementById("swatches");
 
-        // Clear swatches
-        swatches.innerHTML = '';
+        // Load swatch 1
+        // let swStart = document.getElementById('s-color1');
+        // swStart.innerHTML = "#"+color1;
+        // swStart.style.backgroundColor = `#${color1}`;
 
-        // Call midpoints function and pass the 2 colors
-        var midpointColors = findMidpointColors(color1, color2, numberOfBlends.value);
+        var steps = 10; // number of steps to blend
+        var stepSize = 1 / steps; // size of each step
 
-        // Create fragment to append after foreach
+        // Convert the hex color strings to RGB values
+        var rgb1 = hexToRgb(color1);
+        var rgb2 = hexToRgb(color2);
+
+        // Create an array to store the blended colors
+        var colors = [];
         var toAdd = document.createDocumentFragment();
 
-        // Loop through returned array and build divs for each
-        midpointColors.forEach((value) => {
+        // colors.push("#"+color1);
+
+        // Loop through the steps and blend the colors
+        for (var i = 0; i <= steps; i++) {
+            var r = Math.round(rgb1.r * (1 - i * stepSize) + rgb2.r * (i * stepSize));
+            var g = Math.round(rgb1.g * (1 - i * stepSize) + rgb2.g * (i * stepSize));
+            var b = Math.round(rgb1.b * (1 - i * stepSize) + rgb2.b * (i * stepSize));
+            colors.push(rgbToHex(r, g, b));
+        }
+
+        console.log(colors);    
+
+        colors.forEach((value) => {
             var newDiv = document.createElement('div');
             newDiv.id = 'div'+value;
             newDiv.innerHTML = value;
@@ -65,39 +81,12 @@
             toAdd.appendChild(newDiv);
         });
 
-        // Add to swatches section
         swatches.appendChild(toAdd);
 
-        function findMidpointColors(color1, color2, numberOfBlends) {
-            var steps = numberOfBlends; // number of steps to blend
-            var stepSize = 1 / steps; // size of each step
-
-            // Convert the hex color strings to RGB values
-            var rgb1 = hexToRgb(color1);
-            var rgb2 = hexToRgb(color2);
-
-            // Calculate the step size for each color component
-            var rStep = (rgb2.r - rgb1.r) * stepSize;
-            var gStep = (rgb2.g - rgb1.g) * stepSize;
-            var bStep = (rgb2.b - rgb1.b) * stepSize;
-
-            // Create an array to store the midpoint colors
-            var colors = [];
-
-            // Add color1 to array
-            // colors.push(color1);
-
-            // Loop through the steps and find the midpoint colors
-            for (var i = 1; i <= steps; i++) {
-                var r = Math.round(rgb1.r + rStep * i);
-                var g = Math.round(rgb1.g + gStep * i);
-                var b = Math.round(rgb1.b + bStep * i);
-                colors.push(rgbToHex(r, g, b));
-            }
-
-            // Return the array of midpoint colors
-            return colors;
-        }
+        // Load swatch 2
+        // let swEnd = document.getElementById('s-color2');
+        // swEnd.innerHTML = "#"+color2;
+        // swEnd.style.backgroundColor = `#${color2}`;
 
         // Helper function to convert hex color strings to RGB values
         function hexToRgb(hex) {
@@ -109,9 +98,10 @@
 
         // Helper function to convert RGB values to hex color strings
         function rgbToHex(r, g, b) {
-            var hex = "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+            var hex = '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
             return hex;
         }
+
     });
     
 </script>
