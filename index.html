@@ -4,26 +4,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./reset.css">
     <link rel="stylesheet" href="./style.css">
     <title>Blendo - Color Picker</title>
 </head>
 <body>
-    <header>
-        <div class="logo">Blendo</div>
-    </header>
-    <main>
-        <div class="child col1">Maybe Info</div>
-        <div class="child col2">
-            <input id="color1" placeholder="Color 1">
-            <input id="color2" placeholder="Color 2">
-            <select id="numberOfBlends">
-                <option id="1">1</option>
-                <option id="2">2</option>
-                <option id="3">3</option>
-            </select>
-        </div>
-        <div class="child col3">Color swatches here vertical</div>
-    </main>
-    <footer>footer</footer>
+    <div class="container">
+        <header>
+            <div class="logo">Blendo</div>
+        </header>
+        <main class="row">
+            <div class="col col-info">Maybe Info</div>
+            <div class="col col-controls">
+                <input id="color1" placeholder="Color 1">
+                <input id="color2" placeholder="Color 2">
+                <select id="numberOfBlends">
+                    <option id="1">1</option>
+                    <option id="2">2</option>
+                    <option id="3">3</option>
+                </select>
+            </div>
+            <div class="col col-swatches">Color swatches here vertical</div>
+        </main>
+        <footer>footer</footer>
+    </div>
 </body>
 </html>

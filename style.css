@@ -2,16 +2,32 @@
 
 :root {
     font-size: 16px;
+    --col-padding: 10px;
 }
 
 html, body {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: 400;
     background: #f3f3f3;
     margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 100%;
+}
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+.row > * {
+    box-sizing: border-box;
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 100%;
+}
+.col {
+    flex: 1 0 0%;
 }
 
 header {
@@ -34,32 +50,31 @@ main {
     flex-grow: 1;
 }
 
-.child {
-    display: flex;
-    align-items: start;
-    justify-content: start;
+main {
+    height: calc(100vh - 160px);
 }
 
-.col1, .col2, .col3 {
-    flex-grow: 1;
-}
-
-.col1 {
+.col-info {
     background: lightblue;
+    padding: var(--col-padding);
 }
-.col2 {
-    background: lightcoral;
-}
-.col3 {
-    background: lightgreen;
-}
-
-.controls {
+.col-controls {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    background: lightcoral;
+    padding: var(--col-padding);
+}
+.col-swatches {
+    background: lightgreen;
+    padding: var(--col-padding);
 }
 
 input {
+    background: white;
+    border: 2px solid lightcoral;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 8px;
     outline: none;
 }
 
