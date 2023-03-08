@@ -20,8 +20,8 @@
                 <p>Donec egestas magna at est venenatis, a ultrices libero lobortis. Phasellus ac luctus ipsum. Aenean interdum semper suscipit. Fusce sed rhoncus dolor, vel porta erat. Etiam eu mauris odio. Etiam eget justo non massa pellentesque finibus sed eget metus. Suspendisse volutpat odio nec sapien volutpat, in pretium lectus posuere. </p>
             </div>
             <div class="col col-controls">
-                <input id="color1" placeholder="Color 1">
-                <input id="color2" placeholder="Color 2">
+                <input id="color1" placeholder="#Color 1">
+                <input id="color2" placeholder="#Color 2">
                 <select id="numberOfBlends">
                     <option>Number of Blends</option>
                     <option id="1">1</option>
@@ -48,11 +48,13 @@
     document.getElementById("numberOfBlends").addEventListener('change', (e) => {
 
         // Get color1 and color2 and swatches container
-        const color1 = "#"+document.getElementById("color1").value;
-        const color2 = "#"+document.getElementById("color2").value;
+        let color1 = document.getElementById("color1").value;
+        let color2 = document.getElementById("color2").value;
         let numberOfBlends = document.getElementById("numberOfBlends");
-        // numberOfBlends.value = numberOfBlends.value + 1;
         let swatches = document.getElementById("swatches");
+
+        color1 = checkForHashtag(color1);
+        color2 = checkForHashtag(color2);
 
         // Clear swatches
         swatches.innerHTML = '';
@@ -75,6 +77,16 @@
         // Add to swatches section
         swatches.appendChild(toAdd);
 
+        // Checks input for hashtag and adds if missing
+        function checkForHashtag(color) {
+            const hashtag = color.charAt(0);
+            if (hashtag === "#") {
+                return color;
+            } else {
+                return "#"+color;
+            }
+        }
+
         function findMidpointColors(color1, color2, numberOfBlends) {
             var steps = Number(numberOfBlends) + 1; // number of steps to blend
             var stepSize = 1 / steps; // size of each step
@@ -90,11 +102,6 @@
 
             // Create an array to store the midpoint colors
             var colors = [];
-            
-            // Add color1 to array
-            // if (numberOfBlends > 0) {
-            //     colors.push(color1);
-            // }
 
             // Loop through the steps and find the midpoint colors
             for (var i = 0; i <= steps; i++) {
@@ -134,10 +141,10 @@
 
             // Compare relative luminance to threshold value
             if (relativeLuminance > 128) {
-                //return true; // Light color
+                // Light color
                 return `<span style="color: #000000">${hexColor}</span>`;
             } else {
-                //return false; // Dark color
+                // Dark color
                 return `<span style="color: #FFFFFF">${hexColor}</span>`;
             }
         }
