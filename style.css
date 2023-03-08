@@ -2,7 +2,7 @@
 
 :root {
     font-size: 16px;
-    --col-padding: 10px;
+    --col-padding: 16px;
 }
 
 html, body {
@@ -30,13 +30,17 @@ html, body {
     flex: 1 0 0%;
 }
 
-header {
+header, footer {
     display: flex;
     align-items: center;
-    background: #404040;
-    color: #f4f4f4;
+    justify-content: center;
     height: 80px;
     padding: 0 18px;
+}
+
+header {
+    background: #404040;
+    color: #f4f4f4;
     letter-spacing: -6px;
 }
 .logo {
@@ -80,6 +84,5 @@ input {
 
 footer {
     background: #404040;
-    height: 80px;
     color: #f4f4f4;
 }
