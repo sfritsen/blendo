@@ -16,14 +16,12 @@
         <main class="row">
             <div class="col col-info">
                 <div class="section_title">Color Tile Waterfall</div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas quam ut dui posuere, at vulputate justo consequat. Ut maximus vestibulum mattis. Praesent ut fermentum sapien. Phasellus eu ligula nisl. Nam vitae hendrerit nibh. Suspendisse consectetur libero in sem fermentum, vel vulputate risus facilisis. Nam sed semper justo, eget aliquam mauris. Ut in pretium ligula, eget consectetur elit. Cras vitae enim sit amet justo posuere cursus. Mauris dictum urna non tellus viverra, sed maximus elit ultrices.</p>
-                <p>Proin rhoncus nulla nec arcu auctor, ut convallis elit bibendum. Cras venenatis maximus massa, eu mattis nunc pharetra ut. In vel mattis odio. Phasellus eu eleifend arcu. Mauris viverra ex id tellus posuere condimentum. Donec mi mi, aliquet ut ex cursus, porta commodo leo. Proin et fermentum augue, non maximus diam. Proin laoreet consequat tempor. Ut ut arcu auctor, auctor odio ac, euismod lectus. Morbi facilisis nisi eu arcu convallis, sed egestas orci varius. Integer eu lectus at risus imperdiet tempus. Nulla dictum volutpat nulla, sit amet posuere enim pellentesque eget.</p>
-                <p>Donec egestas magna at est venenatis, a ultrices libero lobortis. Phasellus ac luctus ipsum. Aenean interdum semper suscipit. Fusce sed rhoncus dolor, vel porta erat. Etiam eu mauris odio. Etiam eget justo non massa pellentesque finibus sed eget metus. Suspendisse volutpat odio nec sapien volutpat, in pretium lectus posuere. </p>
+                <div id="color-swatch-container"></div>
             </div>
             <div class="col col-controls">
                 <div class="section_title">Select Color Range</div>
-                <input id="color1" maxlength="7" value="" placeholder="#Color 1">
-                <input id="color2" maxlength="7" value="" placeholder="#Color 2">
+                <input id="color1" maxlength="7" value="" placeholder="Hex Color 1">
+                <input id="color2" maxlength="7" value="" placeholder="Hex Color 2">
                 <div class="controls-row">
                     <select id="numberOfBlends">
                         <option selected>Blends</option>
@@ -50,6 +48,29 @@
 </html>
 
 <script type="text/javascript">
+
+    window.addEventListener("load", function() {
+        const colors = ["#ff0000", "#00ff00", "#0000ff", "#ffff00", "#ff00ff", "#00ffff"];
+
+        const container = document.getElementById("color-swatch-container");
+        container.appendChild(createColorSwatchWaterfall(colors));
+    });
+
+    function createColorSwatchWaterfall(colors) {
+        const container = document.createElement("div");
+        container.className = "color-swatch-waterfall";
+
+        for (let i = 0; i < colors.length; i++) {
+            const swatch = document.createElement("div");
+            swatch.className = "color-swatch";
+            swatch.style.backgroundColor = colors[i];
+
+            container.appendChild(swatch);
+        }
+
+        return container;
+    }
+
     document.getElementById("btnReset").addEventListener("click", (e) => {
         document.getElementById("color1").value = "";
         document.getElementById("color2").value = "";
@@ -70,17 +91,12 @@
     });
 
     document.getElementById("numberOfBlends").addEventListener("change", (e) => {
-        // let color2 = document.getElementById("color2");
-        // color2.value = validateInput(color2);
         processHex();
     });
 
     function validateInput(inputtxt) {
         // Allowed characters
         const validCharacters = /^[a-fA-F0-9#]+$/;
-
-        // Reset blends select
-        // document.getElementById("numberOfBlends").selectedIndex = 0;
 
         // Check supplied input
         if (validCharacters.test(inputtxt.value)) {
@@ -90,7 +106,6 @@
         }
     }
 
-    // document.getElementById("numberOfBlends").addEventListener('change', (e) => {
     function processHex() {
         // Get color1 and color2 and swatches container
         let color1 = document.getElementById("color1").value;
@@ -233,7 +248,5 @@
             }
         }
 
-    // });
     }
-    
 </script>
