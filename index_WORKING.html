@@ -15,31 +15,27 @@
         </header>
         <main class="row">
             <div class="col col-info">
-                <div class="section_title">Color Tile Waterfall</div>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas quam ut dui posuere, at vulputate justo consequat. Ut maximus vestibulum mattis. Praesent ut fermentum sapien. Phasellus eu ligula nisl. Nam vitae hendrerit nibh. Suspendisse consectetur libero in sem fermentum, vel vulputate risus facilisis. Nam sed semper justo, eget aliquam mauris. Ut in pretium ligula, eget consectetur elit. Cras vitae enim sit amet justo posuere cursus. Mauris dictum urna non tellus viverra, sed maximus elit ultrices.</p>
                 <p>Proin rhoncus nulla nec arcu auctor, ut convallis elit bibendum. Cras venenatis maximus massa, eu mattis nunc pharetra ut. In vel mattis odio. Phasellus eu eleifend arcu. Mauris viverra ex id tellus posuere condimentum. Donec mi mi, aliquet ut ex cursus, porta commodo leo. Proin et fermentum augue, non maximus diam. Proin laoreet consequat tempor. Ut ut arcu auctor, auctor odio ac, euismod lectus. Morbi facilisis nisi eu arcu convallis, sed egestas orci varius. Integer eu lectus at risus imperdiet tempus. Nulla dictum volutpat nulla, sit amet posuere enim pellentesque eget.</p>
                 <p>Donec egestas magna at est venenatis, a ultrices libero lobortis. Phasellus ac luctus ipsum. Aenean interdum semper suscipit. Fusce sed rhoncus dolor, vel porta erat. Etiam eu mauris odio. Etiam eget justo non massa pellentesque finibus sed eget metus. Suspendisse volutpat odio nec sapien volutpat, in pretium lectus posuere. </p>
             </div>
             <div class="col col-controls">
                 <div class="section_title">Select Color Range</div>
-                <input id="color1" maxlength="7" value="" placeholder="#Color 1">
-                <input id="color2" maxlength="7" value="" placeholder="#Color 2">
-                <div class="controls-row">
-                    <select id="numberOfBlends">
-                        <option selected>Blends</option>
-                        <option id="1">1</option>
-                        <option id="2">2</option>
-                        <option id="3">3</option>
-                        <option id="4">4</option>
-                        <option id="5">5</option>
-                        <option id="6">6</option>
-                        <option id="7">7</option>
-                        <option id="8">8</option>
-                        <option id="9">9</option>
-                        <option id="10">10</option>
-                    </select>
-                    <button id="btnReset">Reset</button>
-                </div>
+                <input id="color1" maxlength="7" placeholder="#Color 1">
+                <input id="color2" maxlength="7" placeholder="#Color 2">
+                <select id="numberOfBlends">
+                    <option selected>Number of Blends</option>
+                    <option id="1">1</option>
+                    <option id="2">2</option>
+                    <option id="3">3</option>
+                    <option id="4">4</option>
+                    <option id="5">5</option>
+                    <option id="6">6</option>
+                    <option id="7">7</option>
+                    <option id="8">8</option>
+                    <option id="9">9</option>
+                    <option id="10">10</option>
+                </select>
             </div>
             <div id="swatches" class="col col-swatches">
             </div>
@@ -50,29 +46,14 @@
 </html>
 
 <script type="text/javascript">
-    document.getElementById("btnReset").addEventListener("click", (e) => {
-        document.getElementById("color1").value = "";
-        document.getElementById("color2").value = "";
-        document.getElementById("numberOfBlends").selectedIndex = 0;
-        swatches.innerHTML = '';
-    });
-
     document.getElementById("color1").addEventListener("keyup", (e) => {
         let color1 = document.getElementById("color1");
         color1.value = validateInput(color1);
-        processHex();
     });
 
     document.getElementById("color2").addEventListener("keyup", (e) => {
         let color2 = document.getElementById("color2");
         color2.value = validateInput(color2);
-        processHex();
-    });
-
-    document.getElementById("numberOfBlends").addEventListener("change", (e) => {
-        // let color2 = document.getElementById("color2");
-        // color2.value = validateInput(color2);
-        processHex();
     });
 
     function validateInput(inputtxt) {
@@ -80,7 +61,7 @@
         const validCharacters = /^[a-fA-F0-9#]+$/;
 
         // Reset blends select
-        // document.getElementById("numberOfBlends").selectedIndex = 0;
+        document.getElementById("numberOfBlends").selectedIndex = 0;
 
         // Check supplied input
         if (validCharacters.test(inputtxt.value)) {
@@ -90,8 +71,8 @@
         }
     }
 
-    // document.getElementById("numberOfBlends").addEventListener('change', (e) => {
-    function processHex() {
+    document.getElementById("numberOfBlends").addEventListener('change', (e) => {
+
         // Get color1 and color2 and swatches container
         let color1 = document.getElementById("color1").value;
         let color2 = document.getElementById("color2").value;
@@ -148,8 +129,7 @@
                 case 5:
                 case 7:
                     // Invalid input
-                    console.log("INVALID HEX 1");
-                    swatches.innerHTML = '';
+                    console.log("INVALID HEX");
                     break;
                 case 3:
                     // Split the hex color into separate characters
@@ -163,8 +143,7 @@
                     break;
                 default:
                     // Invalid input
-                    console.log("INVALID HEX 2");
-                    swatches.innerHTML = '';
+                    console.log("INVALID HEX");
                     break;
             }
 
@@ -233,7 +212,6 @@
             }
         }
 
-    // });
-    }
+    });
     
 </script>

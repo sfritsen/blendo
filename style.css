@@ -79,6 +79,16 @@ main {
     text-transform: uppercase;
 }
 
+.controls-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.controls-row > * {
+    flex-grow: 1;
+}
+
 .section_title {
     font-size: 1.7rem;
     text-align: center;
@@ -110,6 +120,21 @@ select {
     padding: 18px;
     font-weight: bold;
     color: #76a4aa;
+}
+
+button {
+    background: #353535;
+    border: 6px solid #42828A;
+    border-radius: 12px;
+    padding: 18px;
+    font-weight: bold;
+    color: #76a4aa;
+    transition: 0.5s;
+}
+
+button:hover {
+    background: #42828A;
+    color: #353535;
 }
 
 footer {
