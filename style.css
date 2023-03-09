@@ -79,6 +79,14 @@ main {
     text-transform: uppercase;
 }
 
+.section_title {
+    font-size: 1.7rem;
+    text-align: center;
+    color: #42828A;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+}
+
 ::placeholder {
     font-weight: bold;
     color: #fff;
@@ -101,7 +109,7 @@ select {
     border-radius: 12px;
     padding: 18px;
     font-weight: bold;
-    color: #42828A;
+    color: #76a4aa;
 }
 
 footer {
