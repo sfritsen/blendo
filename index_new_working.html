@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./reset.css">
+    <link rel="stylesheet" href="./style.css">
+    <title>Blendo - Color Picker</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">Blendo</div>
+        </header>
+        <main class="row">
+            <div class="col col-info">
+                <div class="section_title">Color Tile Waterfall</div>
+                <div class="color_swatch_container" id="color-swatch-container"></div>
+            </div>
+            <div class="col col-controls">
+                <div class="section_title">Select Color Range</div>
+                <input id="color1" maxlength="7" value="" placeholder="Hex Color 1">
+                <input id="color2" maxlength="7" value="" placeholder="Hex Color 2">
+                <div class="controls-row">
+                    <select id="numberOfBlends">
+                        <option selected>Blends</option>
+                        <option id="1">1</option>
+                        <option id="2">2</option>
+                        <option id="3">3</option>
+                        <option id="4">4</option>
+                        <option id="5">5</option>
+                        <option id="6">6</option>
+                        <option id="7">7</option>
+                        <option id="8">8</option>
+                        <option id="9">9</option>
+                        <option id="10">10</option>
+                    </select>
+                    <button id="btnReset">Reset</button>
+                </div>
+            </div>
+            <div id="swatches" class="col col-swatches">
+            </div>
+        </main>
+        <footer>Buy Marc a coffee</footer>
+    </div>
+</body>
+</html>
+
+<script type="text/javascript">
+
+    // Grab values from inputs
+    let color1 = document.getElementById("color1");
+    let color2 = document.getElementById("color2");
+    let numberOfBlends = document.getElementById("numberOfBlends");
+    let swatches = document.getElementById("swatches");
+
+    // Listener for color input 1
+    document.getElementById("color1").addEventListener("keyup", (e) => {
+        color1.value = validateInput(color1);
+        processHex(color1);
+    });
+
+    // Listener for color input 2
+    document.getElementById("color2").addEventListener("keyup", (e) => {
+        color2.value = validateInput(color2);
+    });
+
+    // Listener for blends select
+    document.getElementById("numberOfBlends").addEventListener("change", (e) => {
+        // processHex();
+    });
+
+    function validateInput(inputText) {
+        // Allowed characters
+        const validCharacters = /^[a-fA-F0-9#]+$/;
+
+        // Check supplied input
+        if (validCharacters.test(inputText.value)) {
+            return inputText.value = inputText.value.replace(/\s/g, "");
+        } else {
+            // TODO Change return to strip out invalid characters to preserve whats typed
+            return "";
+        }
+    }
+
+    function processHex(hexColor) {
+
+        hexColor = hexColor.value;
+
+        // Validate hex inputs
+        color1 = hexColorValidation(hexColor);
+        // color2 = hexColorValidation(color2);
+
+        // Clear swatches
+        swatches.innerHTML = '';
+
+        // Call midpoints function and pass the 2 colors
+        let midpointColors = findMidpointColors(color1, color2, numberOfBlends.value);
+    }
+
+    // Validate and clean inputted colors
+    function hexColorValidation(hexColor) {
+
+        // Get the first character of hexColor
+        const hashtag = hexColor.charAt(0);
+
+        // Remove hashtag if found
+        if (hashtag === "#") {
+            hexColor = hexColor.substring(1);
+        }
+
+        switch (hexColor.length) {
+            case 1:
+            case 2:
+            case 4:
+            case 5:
+            case 7:
+                // Invalid input
+                console.log("INVALID HEX 1");
+                swatches.innerHTML = '';
+                break;
+            case 3:
+                // Split the hex color into separate characters
+                const [r, g, b] = hexColor.split('');
+
+                // Convert each character to a 2 digit string and concatenate them
+                const newHexColor = `${r}${r}${g}${g}${b}${b}`;
+
+                // Return the new 6 digit hex color with hashtag
+                hexColor = newHexColor;
+                break;
+            default:
+                // Invalid input
+                console.log("INVALID HEX 2");
+                swatches.innerHTML = '';
+                break;
+        }
+
+        // Add hashtag and return
+        return hexColor = "#" + hexColor;
+    }
+
+    function findMidpointColors(color1, color2, numberOfBlends) {
+        var steps = Number(numberOfBlends) + 1; // number of steps to blend
+        var stepSize = 1 / steps; // size of each step
+
+        // Convert the hex color strings to RGB values
+        var rgb1 = hexToRgb(color1);
+        var rgb2 = hexToRgb(color2);
+
+        // Calculate the step size for each color component
+        var rStep = (rgb2.r - rgb1.r) * stepSize;
+        var gStep = (rgb2.g - rgb1.g) * stepSize;
+        var bStep = (rgb2.b - rgb1.b) * stepSize;
+
+        // Create an array to store the midpoint colors
+        var colors = [];
+
+        // Loop through the steps and find the midpoint colors
+        for (var i = 0; i <= steps; i++) {
+            var r = Math.round(rgb1.r + rStep * i);
+            var g = Math.round(rgb1.g + gStep * i);
+            var b = Math.round(rgb1.b + bStep * i);
+            colors.push(rgbToHex(r, g, b));
+        }
+
+        // Return the array of midpoint colors
+        return colors;
+    }
+</script>
