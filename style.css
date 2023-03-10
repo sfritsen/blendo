@@ -8,6 +8,7 @@
 html, body {
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: 400;
+    color: #2e2e2e;
     background: #f3f3f3;
     margin: 0;
     padding: 0;
@@ -43,7 +44,7 @@ header, footer {
     align-items: center;
     justify-content: center;
     height: 80px;
-    padding: 0 18px;
+    padding: 0 1px;
 }
 
 header {
