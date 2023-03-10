@@ -34,6 +34,9 @@ a:link, a:visited, a:active {
     text-decoration: none;
     color: #f4f4f4;
 }
+a:hover {
+    text-decoration: underline;
+}
 
 header, footer {
     display: flex;
@@ -79,7 +82,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-left: 6px solid #d7d7d7;
+    border-left: 6px solid #404040;
     font-weight: bold;
     text-transform: uppercase;
 }
@@ -148,6 +151,14 @@ footer {
     color: #f4f4f4;
 }
 
+footer a {
+    margin-right: 20px;
+}
+
+footer a:last-child {
+    margin-right: 0;
+}
+
 .color-swatch {
     display: flex;
     align-items: center;
@@ -158,3 +169,14 @@ footer {
     font-weight: bold;
     text-transform: uppercase;
 }
+
+p {
+    font-size: 1.2rem;
+    padding: var(--col-padding);
+}
+
+ol {
+    padding-left: var(--col-padding);
+    margin-left: 0;
+}
+  
