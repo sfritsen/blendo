@@ -82,7 +82,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-left: 6px solid #404040;
+    border-left: 8px solid #404040;
     font-weight: bold;
     text-transform: uppercase;
 }
@@ -172,6 +172,7 @@ footer a:last-child {
 
 p {
     font-size: 1.2rem;
+    margin-top: 30px;
     padding: var(--col-padding);
 }
 
