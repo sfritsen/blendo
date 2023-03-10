@@ -3,8 +3,6 @@
 :root {
     font-size: 16px;
     --col-padding: 16px;
-    --global-border-radius: 12px;
-    --border-size: 6px;
 }
 
 html, body {
@@ -41,61 +39,42 @@ a:hover {
     text-decoration: underline;
 }
 
+header, footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    padding: 0 1px;
+}
+
+header {
+    background: #404040;
+    color: #f4f4f4;
+    letter-spacing: -6px;
+}
 .logo {
-    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-    animation: gradient 15s ease infinite;
-    background-size: 400% 400%;
-    border: var(--border-size) solid #42828A;
-    border-radius: var(--global-border-radius);
-    padding: 10px;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-@keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
-}
-
-.logo div {
-    font-size: 4rem;
+    font-size: 3rem;
     font-weight: 900;
     text-transform: uppercase;
-    color: #171717;
-    letter-spacing: -6px;
-    -webkit-text-stroke: 2px #42828A;
-}
-.logo a {
-    margin-right: 20px;
-}
-
-.logo a:last-child {
-    margin-right: 0;
 }
 
 main {
     display: flex;
     flex-grow: 1;
-    height: 100vh;
+}
+
+main {
+    height: calc(100vh - 160px);
 }
 
 .col-info {
     padding: var(--col-padding);
 }
-
 .col-controls {
     display: flex;
     flex-direction: column;
     padding: var(--col-padding);
 }
-
 .col-swatches {
     padding: 0;
 }
@@ -120,7 +99,7 @@ main {
 }
 
 .section_title {
-    font-size: 1.9rem;
+    font-size: 1.7rem;
     font-weight: 900;
     text-align: center;
     color: #42828A;
@@ -128,30 +107,68 @@ main {
     text-transform: uppercase;
 }
 
-.random_swatch_container, .defined_swatches {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    background: #cfcfcf;
-    border: var(--border-size) solid #42828A;
-    border-radius: var(--global-border-radius);
-    padding: 10px;
-    margin-bottom: 20px;
+::placeholder {
+    font-weight: bold;
+    color: #fff;
+}
+
+input {
+    background: #353535;
+    border: 6px solid #42828A;
+    border-radius: 12px;
+    padding: 18px;
+    font-weight: bold;
+    color: #76a4aa;
+    margin-bottom: 8px;
+    outline: none;
+}
+
+select {
+    background: #353535;
+    border: 6px solid #42828A;
+    border-radius: 12px;
+    padding: 18px;
+    font-weight: bold;
+    color: #76a4aa;
+}
+
+button {
+    background: #353535;
+    border: 6px solid #42828A;
+    border-radius: 12px;
+    padding: 18px;
+    font-weight: bold;
+    color: #76a4aa;
+    transition: 0.5s;
+}
+
+button:hover {
+    background: #42828A;
+    color: #353535;
+}
+
+footer {
+    background: #404040;
+    color: #f4f4f4;
+}
+
+footer a {
+    margin-right: 20px;
+}
+
+footer a:last-child {
+    margin-right: 0;
 }
 
 .color-swatch {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
-    border: 4px solid #404040;
-    border-radius: 6px;
+    justify-content: center;
+    border: 4px solid #2e2e2e;
     width: 100px;
     height: 50px;
     font-weight: bold;
     text-transform: uppercase;
-    text-align: center;
 }
 
 p {
@@ -164,43 +181,4 @@ ol {
     padding-left: var(--col-padding);
     margin-left: 0;
 }
-
-input {
-    background: #353535;
-    border: var(--border-size) solid #42828A;
-    border-radius: var(--global-border-radius);
-    padding: 18px;
-    font-weight: bold;
-    color: #76a4aa;
-    margin-bottom: 8px;
-    outline: none;
-}
-
-select {
-    background: #353535;
-    border: var(--border-size) solid #42828A;
-    border-radius: var(--global-border-radius);
-    padding: 18px;
-    font-weight: bold;
-    color: #76a4aa;
-}
-
-::placeholder {
-    font-weight: bold;
-    color: #fff;
-}
-
-button {
-    background: #353535;
-    border: var(--border-size) solid #42828A;
-    border-radius: var(--global-border-radius);
-    padding: 18px;
-    font-weight: bold;
-    color: #76a4aa;
-    transition: 0.5s;
-}
-
-button:hover {
-    background: #42828A;
-    color: #353535;
-}
+  
