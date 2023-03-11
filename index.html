@@ -16,32 +16,32 @@
                 <div class="logo">
                     <div>Blendo</div>
                     <a href="https://www.buymeacoffee.com/sfritsen" target="_blank">Buy me a coffee!</a>
-                    <a href="https://github.com/sfritsen/blendo">Blendo on Github</a>
+                    <a href="https://github.com/sfritsen/blendo" target="_blank">Blendo on Github</a>
                 </div>
                 <div class="section_title">20 Random Color Swatches</div>
                 <div id="color-swatch-container"></div>
                 <div class="section_title">Common Colors</div>
                 <div class="defined_swatches">
-                    <div class="ctc color-swatch" style="background: #FFFFFF; color: #333;">#FFFFFF</div>
-                    <div class="ctc color-swatch" style="background: #f5f5dc; color: #333;">#f5f5dc</div>
-                    <div class="ctc color-swatch" style="background: #C0C0C0; color: #333;">#C0C0C0</div>
-                    <div class="ctc color-swatch" style="background: #808080; color: #333;">#808080</div>
+                    <div class="ctc color-swatch" style="background: #FFFFFF; color: #333333;">#FFFFFF</div>
+                    <div class="ctc color-swatch" style="background: #f5f5dc; color: #333333;">#f5f5dc</div>
+                    <div class="ctc color-swatch" style="background: #C0C0C0; color: #333333;">#C0C0C0</div>
+                    <div class="ctc color-swatch" style="background: #808080; color: #333333;">#808080</div>
                     <div class="ctc color-swatch" style="background: #000000; color: #e8e8e8;">#000000</div>           
-                    <div class="ctc color-swatch" style="background: #FFFF00; color: #333;">#FFFF00</div>
-                    <div class="ctc color-swatch" style="background: #ffc0cb; color: #333;">#ffc0cb</div>
+                    <div class="ctc color-swatch" style="background: #FFFF00; color: #333333;">#FFFF00</div>
+                    <div class="ctc color-swatch" style="background: #ffc0cb; color: #333333;">#ffc0cb</div>
                     <div class="ctc color-swatch" style="background: #FF0000; color: #e8e8e8;">#FF0000</div>
                     <div class="ctc color-swatch" style="background: #800000; color: #e8e8e8;">#800000</div>
                     <div class="ctc color-swatch" style="background: #800080; color: #e8e8e8;">#800080</div>
                     <div class="ctc color-swatch" style="background: #FF00FF; color: #e8e8e8;">#FF00FF</div>
-                    <div class="ctc color-swatch" style="background: #ffa500; color: #333;">#ffa500</div>
+                    <div class="ctc color-swatch" style="background: #ffa500; color: #333333;">#ffa500</div>
                     <div class="ctc color-swatch" style="background: #ff4500; color: #e8e8e8;">#ff4500</div>
-                    <div class="ctc color-swatch" style="background: #00FF00; color: #333;">#00FF00</div>
-                    <div class="ctc color-swatch" style="background: #808000; color: #333;">#808000</div>
+                    <div class="ctc color-swatch" style="background: #00FF00; color: #333333;">#00FF00</div>
+                    <div class="ctc color-swatch" style="background: #808000; color: #333333;">#808000</div>
                     <div class="ctc color-swatch" style="background: #008000; color: #e8e8e8;">#008000</div>
                     <div class="ctc color-swatch" style="background: #0000FF; color: #e8e8e8;">#0000FF</div>
                     <div class="ctc color-swatch" style="background: #4682b4; color: #e8e8e8;">#4682b4</div>
                     <div class="ctc color-swatch" style="background: #008080; color: #e8e8e8;">#008080</div>
-                    <div class="ctc color-swatch" style="background: #00FFFF; color: #333">#00FFFF</div>
+                    <div class="ctc color-swatch" style="background: #00FFFF; color: #333333">#00FFFF</div>
                 </div>
             </div>
             <div class="col col-controls">
@@ -218,7 +218,7 @@
         swatches.innerHTML = '';
 
         // Call midpoints function and pass the 2 colors
-        let midpointColors = findMidpointColors(color1, color2, numberOfBlends.value);
+        const midpointColors = findMidpointColors(color1, color2, numberOfBlends.value);
 
         // Create fragment to append after foreach
         let toAdd = document.createDocumentFragment();
@@ -233,7 +233,7 @@
             const divPercentage = Math.round((100 / Number(totalDivs)) * 100) / 100;
 
             // Create divs
-            var newDiv = document.createElement('div');
+            let newDiv = document.createElement('div');
             newDiv.classList.add('ctc');
 
             // Determine luminance for font color
@@ -275,7 +275,6 @@
             case 5:
             case 7:
                 // Invalid input
-                // console.log("INVALID HEX 1");
                 swatches.innerHTML = '';
                 break;
             case 3:
@@ -290,17 +289,20 @@
                 break;
             default:
                 // Invalid input
-                // console.log("INVALID HEX 2");
                 swatches.innerHTML = '';
                 break;
         }
 
+        // Add hashtag and return full hex color
         return hexColor = "#" + hexColor;
     }
 
     function findMidpointColors(color1, color2, numberOfBlends) {
-        let steps = Number(numberOfBlends) + 1; // number of steps to blend
-        let stepSize = 1 / steps; // size of each step
+        // Steps to blend
+        let steps = Number(numberOfBlends) + 1;
+        
+        // Size of each step
+        let stepSize = 1 / steps;
 
         // Convert the hex color strings to RGB values
         let rgb1 = hexToRgb(color1);
@@ -326,7 +328,7 @@
         return colors;
     }
 
-    // Helper function to convert hex color strings to RGB values
+    // Convert hex color strings to RGB
     function hexToRgb(hex) {
         let r = parseInt(hex.slice(1, 3), 16);
         let g = parseInt(hex.slice(3, 5), 16);
@@ -334,29 +336,28 @@
         return { r: r, g: g, b: b };
     }
 
-    // Helper function to convert RGB values to hex color strings
+    // Convert RGB values to hex color
     function rgbToHex(r, g, b) {
         let hex = "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
         return hex;
     }
 
-    // Helper to determine light vs dark color for overlay text
+    // Determine light vs dark color for overlay text
     function isLightColor(hexColor) {
+
         // Convert hex color to RGB
         const red = parseInt(hexColor.substring(1, 3), 16);
         const green = parseInt(hexColor.substring(3, 5), 16);
         const blue = parseInt(hexColor.substring(5, 7), 16);
 
-        // Calculate relative luminance using sRGB color space formula
-        const relativeLuminance = 0.2126 * red + 0.7152 * green + 0.0722 * blue;
+        // Calculate luminance using sRGB color space formula
+        const luminance = 0.2126 * red + 0.7152 * green + 0.0722 * blue;
 
         // Compare relative luminance to threshold value
-        if (relativeLuminance > 128) {
-            // Light color
-            return true;
+        if (luminance > 128) {
+            return true; // Is light color
         } else {
-            // Dark color
-            return false;
+            return false; // Is dark color
         }
     }
 </script>
