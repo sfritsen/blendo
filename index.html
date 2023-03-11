@@ -135,7 +135,7 @@
 
         for (let i = 0; i < 20; i++) {
             const swatch = document.createElement('div');
-            let swatchColor = getRandomHexColor();
+            let swatchColor = '#'+getRandomHexColor();
 
             // Determine luminance for font color
             const luminance = isLightColor(swatchColor);
@@ -155,15 +155,6 @@
 
         let waterfallContainer = document.getElementById("color-swatch-container");
         waterfallContainer.appendChild(grid);
-    }
-
-    function getRandomHexColor() {
-        const letters = '0123456789ABCDEF';
-        let color = '#';
-        for (let i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
     }
 
     document.getElementById("btnReset").addEventListener("click", (e) => {
@@ -215,8 +206,6 @@
 
         color1 = hexColorValidation(color1);
         color2 = hexColorValidation(color2);
-
-        
 
         // Clear swatches
         swatches.innerHTML = '';
@@ -271,9 +260,7 @@
             hexColor = hexColor.substring(1);
         }
 
-        console.log(hexColor);
-        console.log(hexColor.length);
-
+        // Check hexColor length
         switch (hexColor.length) {
             case 1:
             case 2:
@@ -300,14 +287,20 @@
         }
 
         // To help prevent invalid inputs, fill random values to make full hex color
-        const letters = '0123456789ABCDEF';
         const filler = 6 - hexColor.length;
-        for (let i = 0; i < Number(filler); i++) {
-            hexColor += letters[Math.floor(Math.random() * 16)];
-        }
+        hexColor += getRandomHexColor(filler);
 
         // Add hashtag and return full hex color
         return hexColor = "#" + hexColor;
+    }
+
+    function getRandomHexColor(chars = 6) {
+        const letters = '0123456789ABCDEF';
+        let color = '';
+        for (let i = 0; i < chars; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
     }
 
     function findMidpointColors(color1, color2, numberOfBlends) {
@@ -373,4 +366,5 @@
             return false; // Is dark color
         }
     }
+    
 </script>
