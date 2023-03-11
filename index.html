@@ -209,11 +209,14 @@
         let swatches = document.getElementById("swatches");
 
         // Exit out if either color is empty
-        if (!color1) return;
-        if (!color2) return;
+        // if (!color1) return;
+        // if (!color2) return;
+        if (!color1 || !color2) return;
 
         color1 = hexColorValidation(color1);
         color2 = hexColorValidation(color2);
+
+        
 
         // Clear swatches
         swatches.innerHTML = '';
@@ -269,6 +272,7 @@
         }
 
         console.log(hexColor);
+        console.log(hexColor.length);
 
         switch (hexColor.length) {
             case 1:
@@ -293,6 +297,13 @@
                 // Invalid input
                 swatches.innerHTML = '';
                 break;
+        }
+
+        // To help prevent invalid inputs, fill random values to make full hex color
+        const letters = '0123456789ABCDEF';
+        const filler = 6 - hexColor.length;
+        for (let i = 0; i < Number(filler); i++) {
+            hexColor += letters[Math.floor(Math.random() * 16)];
         }
 
         // Add hashtag and return full hex color
