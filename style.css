@@ -166,12 +166,6 @@ main {
 p {
     font-size: 1.2rem;
     margin-top: 30px;
-    padding: var(--col-padding);
-}
-
-ol {
-    padding-left: var(--col-padding);
-    margin-left: 0;
 }
 
 input {
@@ -216,17 +210,14 @@ button:hover {
 
 .alert_container {
     display: flex;
-    align-items: center;
+    align-items: start;
     justify-content: center;
-    /* background: #cfcfcf;
-    border: var(--border-size) solid #42828A;
-    border-radius: var(--global-border-radius);
-    padding: 30px; */
     height: 100%;
     text-transform: uppercase;
     font-size: 2rem;
     font-weight: 900;
-    color: #333;
+    color: #5d5d5d;
+    text-align: center;
 }
 
 .ctc {

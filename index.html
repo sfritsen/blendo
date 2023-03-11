@@ -66,6 +66,7 @@
                 </div>
                 <p>
                     <div class="section_title">Some general usage</div>
+                    Click any swatch to copy the hex color to your clipboard
                     <ol>
                         <li>Put a starting hex color in color 1</li>
                         <li>Select another hex you want to blend in color 2</li>
@@ -73,9 +74,9 @@
                         <li>#winning</li>
                     </ol>
 
+                    <strong>Get creative and do not be afraid to experiment!</strong>
                     If you need inspiration for colors, random swatches are generated on the left and will be refreshed on page reload.
                 </p>
-                <div class="section_title">Get creative!</div>
                 <div class="alert_container" id="copied_alert"></div>
             </div>
             <div id="swatches" class="col col-swatches"></div>
@@ -91,36 +92,6 @@
         generateColorGrid();
         ctcClickAdd();
         processHex();
-
-        // const swatches = document.querySelectorAll('.ctc');
-
-        // function copyToClipboard(event) {
-        //     // Get clicked contents
-        //     const content = event.currentTarget.innerHTML;
-        //     const copiedAlert = document.getElementById('copied_alert');
-            
-        //     // Copy to clipboard
-        //     navigator.clipboard.writeText(content);
-
-        //     // Show alert
-        //     copiedAlert.style.display = "flex";
-
-        //     // Message to display in alert
-        //     copiedAlert.innerHTML = content + " Copied!";
-        //     // console.log("Copied: "+content);
-
-        //     // Set the delay (in milliseconds)
-        //     const delay = 2000; // 2 seconds
-
-        //     // Hide alert based on delay
-        //     setTimeout(() => {
-        //         copiedAlert.style.display = "none";
-        //     }, delay);
-        // }
-
-        // swatches.forEach(swatch => {
-        //     swatch.addEventListener('click', copyToClipboard);
-        // });
     });
 
     function ctcClickAdd() {
@@ -143,7 +114,7 @@
         copiedAlert.style.display = "flex";
 
         // Message to display in alert
-        copiedAlert.innerHTML = content + " Copied!";
+        copiedAlert.innerHTML = content + "<br>Copied";
         // console.log("Copied: "+content);
 
         // Set the delay (in milliseconds)
@@ -278,7 +249,7 @@
         // Add to swatches section
         swatches.appendChild(toAdd);
 
-        // Add onclicks for copy to clipboard
+        // ReAdd onclicks for copy to clipboard
         ctcClickAdd();
     }
 
