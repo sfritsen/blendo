@@ -205,6 +205,11 @@
         let color2 = document.getElementById("color2").value;
         let numberOfBlends = document.getElementById("numberOfBlends");
         let swatches = document.getElementById("swatches");
+        console.log(color1);
+
+        // Exit out if either color is empty
+        if (!color1) return;
+        if (!color2) return;
 
         color1 = hexColorValidation(color1);
         color2 = hexColorValidation(color2);
@@ -270,7 +275,7 @@
             case 5:
             case 7:
                 // Invalid input
-                console.log("INVALID HEX 1");
+                // console.log("INVALID HEX 1");
                 swatches.innerHTML = '';
                 break;
             case 3:
@@ -285,7 +290,7 @@
                 break;
             default:
                 // Invalid input
-                console.log("INVALID HEX 2");
+                // console.log("INVALID HEX 2");
                 swatches.innerHTML = '';
                 break;
         }
@@ -354,10 +359,4 @@
             return false;
         }
     }
-
-    // Working but selects EVERYTHING YOU CLICK
-    // window.onclick = e => {
-    //     console.log(e.target.innerText);
-    // }
-
 </script>
