@@ -89,38 +89,71 @@
 
     window.addEventListener("load", function() {
         generateColorGrid();
+        ctcClickAdd();
         processHex();
 
-        const swatches = document.querySelectorAll('.ctc');
+        // const swatches = document.querySelectorAll('.ctc');
 
-        function copyToClipboard(event) {
-            // Get clicked contents
-            const content = event.currentTarget.innerHTML;
-            const copiedAlert = document.getElementById('copied_alert');
+        // function copyToClipboard(event) {
+        //     // Get clicked contents
+        //     const content = event.currentTarget.innerHTML;
+        //     const copiedAlert = document.getElementById('copied_alert');
             
-            // Copy to clipboard
-            navigator.clipboard.writeText(content);
+        //     // Copy to clipboard
+        //     navigator.clipboard.writeText(content);
 
-            // Show alert
-            copiedAlert.style.display = "flex";
+        //     // Show alert
+        //     copiedAlert.style.display = "flex";
 
-            // Message to display in alert
-            copiedAlert.innerHTML = content + " Copied!";
-            // console.log("Copied: "+content);
+        //     // Message to display in alert
+        //     copiedAlert.innerHTML = content + " Copied!";
+        //     // console.log("Copied: "+content);
 
-            // Set the delay (in milliseconds)
-            const delay = 2000; // 2 seconds
+        //     // Set the delay (in milliseconds)
+        //     const delay = 2000; // 2 seconds
 
-            // Hide alert based on delay
-            setTimeout(() => {
-                copiedAlert.style.display = "none";
-            }, delay);
-        }
+        //     // Hide alert based on delay
+        //     setTimeout(() => {
+        //         copiedAlert.style.display = "none";
+        //     }, delay);
+        // }
+
+        // swatches.forEach(swatch => {
+        //     swatch.addEventListener('click', copyToClipboard);
+        // });
+    });
+
+    function ctcClickAdd() {
+        const swatches = document.querySelectorAll('.ctc');
 
         swatches.forEach(swatch => {
             swatch.addEventListener('click', copyToClipboard);
         });
-    });
+    }
+
+    function copyToClipboard(event) {
+        // Get clicked contents
+        const content = event.currentTarget.innerHTML;
+        const copiedAlert = document.getElementById('copied_alert');
+        
+        // Copy to clipboard
+        navigator.clipboard.writeText(content);
+
+        // Show alert
+        copiedAlert.style.display = "flex";
+
+        // Message to display in alert
+        copiedAlert.innerHTML = content + " Copied!";
+        // console.log("Copied: "+content);
+
+        // Set the delay (in milliseconds)
+        const delay = 2000; // 2 seconds
+
+        // Hide alert based on delay
+        setTimeout(() => {
+            copiedAlert.style.display = "none";
+        }, delay);
+    }
 
     function generateColorGrid() {
 
@@ -225,6 +258,7 @@
 
             // Create divs
             var newDiv = document.createElement('div');
+            newDiv.classList.add('ctc');
 
             // Determine luminance for font color
             const luminance = isLightColor(value);
@@ -235,7 +269,6 @@
             }
 
             newDiv.id = 'div'+value;
-            newDiv.classList = 'ctc';
             newDiv.innerHTML = value;
             newDiv.style.backgroundColor = value;
             newDiv.style.height = divPercentage+'%';
@@ -244,6 +277,9 @@
 
         // Add to swatches section
         swatches.appendChild(toAdd);
+
+        // Add onclicks for copy to clipboard
+        ctcClickAdd();
     }
 
     // Validate and clean inputted colors
