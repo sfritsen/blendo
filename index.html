@@ -118,7 +118,6 @@
 
         // Message to display in alert
         copiedAlert.innerHTML = content + "<br>Copied";
-        // console.log("Copied: "+content);
 
         // Set the delay (in milliseconds)
         const delay = 2000; // 2 seconds
@@ -208,7 +207,6 @@
         let color2 = document.getElementById("color2").value;
         let numberOfBlends = document.getElementById("numberOfBlends");
         let swatches = document.getElementById("swatches");
-        console.log(color1);
 
         // Exit out if either color is empty
         if (!color1) return;
@@ -226,7 +224,6 @@
         // Create fragment to append after foreach
         let toAdd = document.createDocumentFragment();
 
-        // console.log(numberOfBlends.value);
         const totalDivs = Number(numberOfBlends.value) + 2;
 
         // Loop through returned array, calculate height and build divs for each
