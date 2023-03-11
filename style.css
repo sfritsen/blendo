@@ -213,3 +213,22 @@ button:hover {
     background: #42828A;
     color: #353535;
 }
+
+.alert_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background: #cfcfcf;
+    border: var(--border-size) solid #42828A;
+    border-radius: var(--global-border-radius);
+    padding: 10px; */
+    height: 100%;
+    text-transform: uppercase;
+    font-size: 2rem;
+    font-weight: 900;
+    color: #42828A;
+}
+
+.ctc {
+    cursor: pointer;
+}

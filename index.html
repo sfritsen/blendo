@@ -22,26 +22,26 @@
                 <div id="color-swatch-container"></div>
                 <div class="section_title">Common Colors</div>
                 <div class="defined_swatches">
-                    <div class="color-swatch" style="background: #FFFFFF; color: #333" onclick="copyToClipboard()">#FFFFFF</div>
-                    <div class="color-swatch" style="background: #f5f5dc; color: #333" onclick="copyToClipboard()">#f5f5dc</div>
-                    <div class="color-swatch" style="background: #C0C0C0; color: #333" onclick="copyToClipboard()">#C0C0C0</div>
-                    <div class="color-swatch" style="background: #808080; color: #333">#808080 Gray</div>
-                    <div class="color-swatch" style="background: #000000; color: #e8e8e8">#000000 Black</div>           
-                    <div class="color-swatch" style="background: #FFFF00; color: #333">#FFFF00 Yellow</div>
-                    <div class="color-swatch" style="background: #ffc0cb; color: #333">#ffc0cb Pink</div>
-                    <div class="color-swatch" style="background: #FF0000; color: #e8e8e8">#FF0000 Red</div>
-                    <div class="color-swatch" style="background: #800000; color: #e8e8e8">#800000 Maroon</div>
-                    <div class="color-swatch" style="background: #800080; color: #e8e8e8">#800080 Purple</div>
-                    <div class="color-swatch" style="background: #FF00FF; color: #e8e8e8">#FF00FF Fuchsia</div>
-                    <div class="color-swatch" style="background: #ffa500; color: #333">#ffa500 Orange</div>
-                    <div class="color-swatch" style="background: #ff4500; color: #e8e8e8">#ff4500 Orangered</div>
-                    <div class="color-swatch" style="background: #00FF00; color: #333">#00FF00 Lime</div>
-                    <div class="color-swatch" style="background: #808000; color: #333">#808000 Olive</div>
-                    <div class="color-swatch" style="background: #008000; color: #e8e8e8">#008000 Green</div>
-                    <div class="color-swatch" style="background: #0000FF; color: #e8e8e8">#0000FF Blue</div>
-                    <div class="color-swatch" style="background: #4682b4; color: #e8e8e8">#4682b4 Steelblue</div>
-                    <div class="color-swatch" style="background: #008080; color: #e8e8e8">#008080 Teal</div>
-                    <div class="color-swatch" style="background: #00FFFF; color: #333">#00FFFF Cyan</div>
+                    <div class="ctc color-swatch" style="background: #FFFFFF; color: #333;">#FFFFFF</div>
+                    <div class="ctc color-swatch" style="background: #f5f5dc; color: #333;">#f5f5dc</div>
+                    <div class="ctc color-swatch" style="background: #C0C0C0; color: #333;">#C0C0C0</div>
+                    <div class="ctc color-swatch" style="background: #808080; color: #333;">#808080</div>
+                    <div class="ctc color-swatch" style="background: #000000; color: #e8e8e8;">#000000</div>           
+                    <div class="ctc color-swatch" style="background: #FFFF00; color: #333;">#FFFF00</div>
+                    <div class="ctc color-swatch" style="background: #ffc0cb; color: #333;">#ffc0cb</div>
+                    <div class="ctc color-swatch" style="background: #FF0000; color: #e8e8e8;">#FF0000</div>
+                    <div class="ctc color-swatch" style="background: #800000; color: #e8e8e8;">#800000</div>
+                    <div class="ctc color-swatch" style="background: #800080; color: #e8e8e8;">#800080</div>
+                    <div class="ctc color-swatch" style="background: #FF00FF; color: #e8e8e8;">#FF00FF</div>
+                    <div class="ctc color-swatch" style="background: #ffa500; color: #333;">#ffa500</div>
+                    <div class="ctc color-swatch" style="background: #ff4500; color: #e8e8e8;">#ff4500</div>
+                    <div class="ctc color-swatch" style="background: #00FF00; color: #333;">#00FF00</div>
+                    <div class="ctc color-swatch" style="background: #808000; color: #333;">#808000</div>
+                    <div class="ctc color-swatch" style="background: #008000; color: #e8e8e8;">#008000</div>
+                    <div class="ctc color-swatch" style="background: #0000FF; color: #e8e8e8;">#0000FF</div>
+                    <div class="ctc color-swatch" style="background: #4682b4; color: #e8e8e8;">#4682b4</div>
+                    <div class="ctc color-swatch" style="background: #008080; color: #e8e8e8;">#008080</div>
+                    <div class="ctc color-swatch" style="background: #00FFFF; color: #333">#00FFFF</div>
                 </div>
             </div>
             <div class="col col-controls">
@@ -76,6 +76,7 @@
                     If you need inspiration for colors, random swatches are generated on the left and will be refreshed on page reload.
                 </p>
                 <div class="section_title">Get creative!</div>
+                <div class="alert_container" id="copied_alert"></div>
             </div>
             <div id="swatches" class="col col-swatches"></div>
         </main>
@@ -89,6 +90,36 @@
     window.addEventListener("load", function() {
         generateColorGrid();
         processHex();
+
+        const swatches = document.querySelectorAll('.ctc');
+
+        function copyToClipboard(event) {
+            // Get clicked contents
+            const content = event.currentTarget.innerHTML;
+            const copiedAlert = document.getElementById('copied_alert');
+            
+            // Copy to clipboard
+            navigator.clipboard.writeText(content);
+
+            // Show alert
+            copiedAlert.style.display = "flex";
+
+            // Message to display in alert
+            copiedAlert.innerHTML = content + " Copied!";
+            // console.log("Copied: "+content);
+
+            // Set the delay (in milliseconds)
+            const delay = 2000; // 2 seconds
+
+            // Hide alert based on delay
+            setTimeout(() => {
+                copiedAlert.style.display = "none";
+            }, delay);
+        }
+
+        swatches.forEach(swatch => {
+            swatch.addEventListener('click', copyToClipboard);
+        });
     });
 
     function generateColorGrid() {
@@ -290,23 +321,16 @@
         // Compare relative luminance to threshold value
         if (relativeLuminance > 128) {
             // Light color
-            return `<span style="color: #333">${hexColor}</span>`;
+            return `<span class="ctc" style="color: #333">${hexColor}</span>`;
         } else {
             // Dark color
-            return `<span style="color: #e8e8e8">${hexColor}</span>`;
+            return `<span class="ctc" style="color: #e8e8e8">${hexColor}</span>`;
         }
     }
 
-    function copyToClipboard() {
-        const elements = document.querySelectorAll('.color-swatch');
-        const selection = window.getSelection();
-        const range = document.createRange();
-        elements.forEach(element => {
-            range.selectNodeContents(element);
-            selection.removeAllRanges();
-            selection.addRange(range);
-            document.execCommand('copy');
-            selection.removeAllRanges();
-        });
-    }
+    // Working but selects EVERYTHING YOU CLICK
+    // window.onclick = e => {
+    //     console.log(e.target.innerText);
+    // }
+
 </script>
