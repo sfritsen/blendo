@@ -22,9 +22,9 @@
                 <div id="color-swatch-container"></div>
                 <div class="section_title">Common Colors</div>
                 <div class="defined_swatches">
-                    <div class="color-swatch" style="background: #FFFFFF; color: #333">#FFFFFF White</div>
-                    <div class="color-swatch" style="background: #f5f5dc; color: #333">#f5f5dc Beige</div>
-                    <div class="color-swatch" style="background: #C0C0C0; color: #333">#C0C0C0 Silver</div>
+                    <div class="color-swatch" style="background: #FFFFFF; color: #333" onclick="copyToClipboard()">#FFFFFF</div>
+                    <div class="color-swatch" style="background: #f5f5dc; color: #333" onclick="copyToClipboard()">#f5f5dc</div>
+                    <div class="color-swatch" style="background: #C0C0C0; color: #333" onclick="copyToClipboard()">#C0C0C0</div>
                     <div class="color-swatch" style="background: #808080; color: #333">#808080 Gray</div>
                     <div class="color-swatch" style="background: #000000; color: #e8e8e8">#000000 Black</div>           
                     <div class="color-swatch" style="background: #FFFF00; color: #333">#FFFF00 Yellow</div>
@@ -295,5 +295,18 @@
             // Dark color
             return `<span style="color: #e8e8e8">${hexColor}</span>`;
         }
+    }
+
+    function copyToClipboard() {
+        const elements = document.querySelectorAll('.color-swatch');
+        const selection = window.getSelection();
+        const range = document.createRange();
+        elements.forEach(element => {
+            range.selectNodeContents(element);
+            selection.removeAllRanges();
+            selection.addRange(range);
+            document.execCommand('copy');
+            selection.removeAllRanges();
+        });
     }
 </script>

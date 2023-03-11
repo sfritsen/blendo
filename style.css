@@ -42,9 +42,9 @@ a:hover {
 }
 
 .logo {
-    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-    animation: gradient 15s ease infinite;
-    background-size: 400% 400%;
+    background: linear-gradient(-45deg, #23d5ab, #ee7752, #e73c7e, #23a6d5);
+    animation: gradient 6s ease infinite;
+    background-size: 200% 200%;
     border: var(--border-size) solid #42828A;
     border-radius: var(--global-border-radius);
     padding: 10px;
@@ -97,8 +97,8 @@ main {
 }
 
 .col-swatches {
-    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-    animation: gradient 15s ease infinite;
+    background: linear-gradient(-45deg, #ee7752, #23a6d5, #e73c7e, #23d5ab);
+    animation: gradient 8s ease infinite;
     background-size: 400% 400%;
     border-left: 8px solid #404040;
     padding: 0;
@@ -155,6 +155,7 @@ main {
     font-weight: bold;
     text-transform: uppercase;
     text-align: center;
+    cursor: pointer;
 }
 
 .filler_text {
