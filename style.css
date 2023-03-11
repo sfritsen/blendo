@@ -232,3 +232,11 @@ button:hover {
 .ctc {
     cursor: pointer;
 }
+
+.isLightBackground {
+    color: #333;
+}
+
+.isDarkBackground {
+    color: #e8e8e8;
+}

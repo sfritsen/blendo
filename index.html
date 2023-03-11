@@ -130,10 +130,20 @@
         for (let i = 0; i < 20; i++) {
             const swatch = document.createElement('div');
             let swatchColor = getRandomHexColor();
+
+            // Determine luminance for font color
+            const luminance = isLightColor(swatchColor);
+            if (luminance == true) {
+                swatch.classList.add('isLightBackground');
+            } else {
+                swatch.classList.add('isDarkBackground');
+            }
+
+            swatch.classList.add('ctc');
             swatch.classList.add('color-swatch');
             swatch.style.backgroundColor = swatchColor;
             swatch.id = "hex" + swatchColor;
-            swatch.innerHTML = isLightColor(swatchColor);
+            swatch.innerHTML = swatchColor;
             grid.appendChild(swatch);
         }
 
@@ -215,8 +225,18 @@
 
             // Create divs
             var newDiv = document.createElement('div');
+
+            // Determine luminance for font color
+            const luminance = isLightColor(value);
+            if (luminance == true) {
+                newDiv.classList.add('isLightBackground');
+            } else {
+                newDiv.classList.add('isDarkBackground');
+            }
+
             newDiv.id = 'div'+value;
-            newDiv.innerHTML = isLightColor(value);
+            newDiv.classList = 'ctc';
+            newDiv.innerHTML = value;
             newDiv.style.backgroundColor = value;
             newDiv.style.height = divPercentage+'%';
             toAdd.appendChild(newDiv);
@@ -321,10 +341,10 @@
         // Compare relative luminance to threshold value
         if (relativeLuminance > 128) {
             // Light color
-            return `<span class="ctc" style="color: #333">${hexColor}</span>`;
+            return true;
         } else {
             // Dark color
-            return `<span class="ctc" style="color: #e8e8e8">${hexColor}</span>`;
+            return false;
         }
     }
 
