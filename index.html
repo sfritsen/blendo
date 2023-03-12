@@ -15,7 +15,7 @@
     <div class="container">
 
         <main class="row">
-            <div class="col col-info">
+            <div class="col column1">
                 <div class="logo">
                     <div>Blendo</div>
                     <a href="https://www.buymeacoffee.com/sfritsen" target="_blank">Buy me a coffee!</a>
@@ -24,7 +24,7 @@
                 <div class="section_title">20 Random Color Swatches</div>
                 <div id="color-swatch-container"></div>
                 <div class="section_title">Common Colors</div>
-                <div class="defined_swatches">
+                <div class="swatch_container">
                     <div class="ctc color-swatch" style="background: #FFFFFF; color: #333333;">#FFFFFF</div>
                     <div class="ctc color-swatch" style="background: #f5f5dc; color: #333333;">#f5f5dc</div>
                     <div class="ctc color-swatch" style="background: #C0C0C0; color: #333333;">#C0C0C0</div>
@@ -47,7 +47,7 @@
                     <div class="ctc color-swatch" style="background: #00FFFF; color: #333333">#00FFFF</div>
                 </div>
             </div>
-            <div class="col col-controls">
+            <div class="col column2">
                 <div class="section_title">Select Color Range</div>
                 <input id="color1" maxlength="7" value="" placeholder="Hex Color 1">
                 <input id="color2" maxlength="7" value="" placeholder="Hex Color 2">
@@ -82,7 +82,7 @@
                 </p>
                 <div class="alert_container" id="copied_alert"></div>
             </div>
-            <div id="swatches" class="col col-swatches"></div>
+            <div id="swatches" class="col column3"></div>
         </main>
 
     </div>
@@ -131,7 +131,7 @@
     function generateColorGrid() {
 
         const grid = document.createElement('div');
-        grid.className = 'random_swatch_container';
+        grid.className = 'swatch_container';
 
         for (let i = 0; i < 20; i++) {
             const swatch = document.createElement('div');
@@ -184,9 +184,17 @@
         // Allowed characters
         const validCharacters = /^[a-fA-F0-9#]+$/;
 
-        // Check supplied input
+        // TODO need to find a way to validate if hashtag is not at first spot
+        // Check supplied input against valid characters
         if (validCharacters.test(inputtxt.value)) {
-            return inputtxt.value = inputtxt.value.replace(/\s/g, "");
+
+            // If only valid characters are used, check index of # or if one exists
+            if (inputtxt.value.indexOf("#") === 0 || !inputtxt.value.includes("#")) {
+                return inputtxt.value = inputtxt.value.replace(/\s/g, "");
+            } else {
+                return "";
+            }
+
         } else {
             return "";
         }
@@ -196,27 +204,26 @@
         // Get color1 and color2 and swatches container
         let color1 = document.getElementById("color1").value;
         let color2 = document.getElementById("color2").value;
-        let numberOfBlends = document.getElementById("numberOfBlends");
+        let numberOfBlends = document.getElementById("numberOfBlends").value;
         let swatches = document.getElementById("swatches");
 
         // Exit out if either color is empty
-        // if (!color1) return;
-        // if (!color2) return;
         if (!color1 || !color2) return;
 
         color1 = hexColorValidation(color1);
         color2 = hexColorValidation(color2);
 
-        // Clear swatches
+        // Clear blend swatches
         swatches.innerHTML = '';
 
         // Call midpoints function and pass the 2 colors
-        const midpointColors = findMidpointColors(color1, color2, numberOfBlends.value);
+        const midpointColors = findMidpointColors(color1, color2, numberOfBlends);
 
         // Create fragment to append after foreach
         let toAdd = document.createDocumentFragment();
 
-        const totalDivs = Number(numberOfBlends.value) + 2;
+        // Calculates total divs plus the 2 supplied
+        const totalDivs = Number(numberOfBlends) + 2;
 
         // Loop through returned array, calculate height and build divs for each
         midpointColors.forEach((value) => {
@@ -226,17 +233,16 @@
 
             // Create divs
             let newDiv = document.createElement('div');
-            newDiv.classList.add('ctc');
 
             // Determine luminance for font color
-            const luminance = isLightColor(value);
+            const luminance = isLightColor(value); 
             if (luminance == true) {
                 newDiv.classList.add('isLightBackground');
             } else {
                 newDiv.classList.add('isDarkBackground');
             }
 
-            newDiv.id = 'div'+value;
+            newDiv.classList.add('ctc'); // Add copy to clipboard
             newDiv.innerHTML = value;
             newDiv.style.backgroundColor = value;
             newDiv.style.height = divPercentage+'%';
@@ -256,34 +262,18 @@
         // Get the first character of hexColor
         const hashtag = hexColor.charAt(0);
 
+        // Strip the leading hashtag if found
         if (hashtag === "#") {
             hexColor = hexColor.substring(1);
         }
 
-        // Check hexColor length
-        switch (hexColor.length) {
-            case 1:
-            case 2:
-            case 4:
-            case 5:
-            case 7:
-                // Invalid input
-                swatches.innerHTML = '';
-                break;
-            case 3:
-                // Split the hex color into separate characters
-                const [r, g, b] = hexColor.split('');
+        // If hexColor is 3, convert to 6 digit hex
+        if (hexColor.length === 3) {
+            // Split the hex color into separate characters
+            const [r, g, b] = hexColor.split('');
 
-                // Convert each character to a 2 digit string and concatenate them
-                const newHexColor = `${r}${r}${g}${g}${b}${b}`;
-
-                // Return the new 6 digit hex color with hashtag
-                hexColor = newHexColor;
-                break;
-            default:
-                // Invalid input
-                swatches.innerHTML = '';
-                break;
+            // Convert each character to a 2 digit string and concatenate them
+            hexColor = `${r}${r}${g}${g}${b}${b}`;
         }
 
         // To help prevent invalid inputs, fill random values to make full hex color
@@ -334,20 +324,6 @@
         return colors;
     }
 
-    // Convert hex color strings to RGB
-    function hexToRgb(hex) {
-        let r = parseInt(hex.slice(1, 3), 16);
-        let g = parseInt(hex.slice(3, 5), 16);
-        let b = parseInt(hex.slice(5, 7), 16);
-        return { r: r, g: g, b: b };
-    }
-
-    // Convert RGB values to hex color
-    function rgbToHex(r, g, b) {
-        let hex = "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
-        return hex;
-    }
-
     // Determine light vs dark color for overlay text
     function isLightColor(hexColor) {
 
@@ -365,6 +341,20 @@
         } else {
             return false; // Is dark color
         }
+    }
+
+    // Convert hex color strings to RGB
+    function hexToRgb(hex) {
+        let r = parseInt(hex.slice(1, 3), 16);
+        let g = parseInt(hex.slice(3, 5), 16);
+        let b = parseInt(hex.slice(5, 7), 16);
+        return { r: r, g: g, b: b };
+    }
+
+    // Convert RGB values to hex color
+    function rgbToHex(r, g, b) {
+        let hex = "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+        return hex;
     }
     
 </script>
