@@ -296,7 +296,10 @@ button:hover {
     .column2 {
         margin-bottom: -240px;
     } */
-    .swatch_container, .usage_container {
+    /* .swatch_container, .usage_container {
+        display: none;
+    } */
+    .usage_container {
         display: none;
     }
     .column3 {
