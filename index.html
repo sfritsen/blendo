@@ -25,30 +25,34 @@
                         <a class="icon_text" href="https://github.com/sfritsen/blendo" target="_blank">Blendo on Github</a>    
                     </div>
                 </div>
-                <div class="section_title">20 Random Color Swatches</div>
-                <div id="color-swatch-container"></div>
-                <div class="section_title">Common Colors</div>
                 <div class="swatch_container">
-                    <div class="ctc color-swatch" style="background: #FFFFFF; color: #333333;">#FFFFFF</div>
-                    <div class="ctc color-swatch" style="background: #f5f5dc; color: #333333;">#f5f5dc</div>
-                    <div class="ctc color-swatch" style="background: #C0C0C0; color: #333333;">#C0C0C0</div>
-                    <div class="ctc color-swatch" style="background: #808080; color: #333333;">#808080</div>
-                    <div class="ctc color-swatch" style="background: #000000; color: #e8e8e8;">#000000</div>           
-                    <div class="ctc color-swatch" style="background: #FFFF00; color: #333333;">#FFFF00</div>
-                    <div class="ctc color-swatch" style="background: #ffc0cb; color: #333333;">#ffc0cb</div>
-                    <div class="ctc color-swatch" style="background: #FF0000; color: #e8e8e8;">#FF0000</div>
-                    <div class="ctc color-swatch" style="background: #800000; color: #e8e8e8;">#800000</div>
-                    <div class="ctc color-swatch" style="background: #800080; color: #e8e8e8;">#800080</div>
-                    <div class="ctc color-swatch" style="background: #FF00FF; color: #e8e8e8;">#FF00FF</div>
-                    <div class="ctc color-swatch" style="background: #ffa500; color: #333333;">#ffa500</div>
-                    <div class="ctc color-swatch" style="background: #ff4500; color: #e8e8e8;">#ff4500</div>
-                    <div class="ctc color-swatch" style="background: #00FF00; color: #333333;">#00FF00</div>
-                    <div class="ctc color-swatch" style="background: #808000; color: #333333;">#808000</div>
-                    <div class="ctc color-swatch" style="background: #008000; color: #e8e8e8;">#008000</div>
-                    <div class="ctc color-swatch" style="background: #0000FF; color: #e8e8e8;">#0000FF</div>
-                    <div class="ctc color-swatch" style="background: #4682b4; color: #e8e8e8;">#4682b4</div>
-                    <div class="ctc color-swatch" style="background: #008080; color: #e8e8e8;">#008080</div>
-                    <div class="ctc color-swatch" style="background: #00FFFF; color: #333333">#00FFFF</div>
+                    <div class="section_title">20 Random Color Swatches</div>
+                    <div class="swatches" id="random_swatch_container"></div>
+                </div>
+                <div class="swatch_container">
+                    <div class="section_title">Common Colors</div>
+                    <div class="swatches">
+                        <div class="ctc color-swatch" style="background: #FFFFFF; color: #333333;">#FFFFFF</div>
+                        <div class="ctc color-swatch" style="background: #f5f5dc; color: #333333;">#f5f5dc</div>
+                        <div class="ctc color-swatch" style="background: #C0C0C0; color: #333333;">#C0C0C0</div>
+                        <div class="ctc color-swatch" style="background: #808080; color: #333333;">#808080</div>
+                        <div class="ctc color-swatch" style="background: #000000; color: #e8e8e8;">#000000</div>           
+                        <div class="ctc color-swatch" style="background: #FFFF00; color: #333333;">#FFFF00</div>
+                        <div class="ctc color-swatch" style="background: #ffc0cb; color: #333333;">#ffc0cb</div>
+                        <div class="ctc color-swatch" style="background: #FF0000; color: #e8e8e8;">#FF0000</div>
+                        <div class="ctc color-swatch" style="background: #800000; color: #e8e8e8;">#800000</div>
+                        <div class="ctc color-swatch" style="background: #800080; color: #e8e8e8;">#800080</div>
+                        <div class="ctc color-swatch" style="background: #FF00FF; color: #e8e8e8;">#FF00FF</div>
+                        <div class="ctc color-swatch" style="background: #ffa500; color: #333333;">#ffa500</div>
+                        <div class="ctc color-swatch" style="background: #ff4500; color: #e8e8e8;">#ff4500</div>
+                        <div class="ctc color-swatch" style="background: #00FF00; color: #333333;">#00FF00</div>
+                        <div class="ctc color-swatch" style="background: #808000; color: #333333;">#808000</div>
+                        <div class="ctc color-swatch" style="background: #008000; color: #e8e8e8;">#008000</div>
+                        <div class="ctc color-swatch" style="background: #0000FF; color: #e8e8e8;">#0000FF</div>
+                        <div class="ctc color-swatch" style="background: #4682b4; color: #e8e8e8;">#4682b4</div>
+                        <div class="ctc color-swatch" style="background: #008080; color: #e8e8e8;">#008080</div>
+                        <div class="ctc color-swatch" style="background: #00FFFF; color: #333333">#00FFFF</div>
+                    </div>
                 </div>
             </div>
             <div class="col column2">
@@ -134,8 +138,7 @@
 
     function generateColorGrid() {
 
-        const grid = document.createElement('div');
-        grid.className = 'swatch_container';
+        let waterfallContainer = document.getElementById("random_swatch_container");
 
         for (let i = 0; i < 20; i++) {
             const swatch = document.createElement('div');
@@ -154,11 +157,8 @@
             swatch.style.backgroundColor = swatchColor;
             swatch.id = "hex" + swatchColor;
             swatch.innerHTML = swatchColor;
-            grid.appendChild(swatch);
+            waterfallContainer.appendChild(swatch);
         }
-
-        let waterfallContainer = document.getElementById("color-swatch-container");
-        waterfallContainer.appendChild(grid);
     }
 
     document.getElementById("btnReset").addEventListener("click", (e) => {
@@ -180,9 +180,7 @@
         processHex();
     });
 
-    document.getElementById("numberOfBlends").addEventListener("change", (e) => {
-        processHex();
-    });
+    document.getElementById("numberOfBlends").addEventListener("change", (e) => processHex() );
 
     function validateInput(inputtxt) {
         // Allowed characters
@@ -209,6 +207,7 @@
             }
 
         } else {
+            // Invalid characters were found, clear input
             return "";
         }
     }
