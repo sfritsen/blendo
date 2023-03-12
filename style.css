@@ -174,16 +174,6 @@ main {
     cursor: pointer;
 }
 
-.filler_text {
-    font-size: 4rem;
-    color: black;
-}
-
-p {
-    font-size: 1.2rem;
-    margin-top: 30px;
-}
-
 input {
     background: #353535;
     border: var(--border-size) solid #42828A;
@@ -204,9 +194,24 @@ select {
     color: #76a4aa;
 }
 
+::-webkit-input-placeholder {
+    font-weight: bold;
+    color: #a2a2a2;
+}
+
+::-moz-placeholder {
+    font-weight: bold;
+    color: #a2a2a2;
+}
+
+::-ms-placeholder {
+    font-weight: bold;
+    color: #a2a2a2;
+}
+
 ::placeholder {
     font-weight: bold;
-    color: #fff;
+    color: #e8e8e8;
 }
 
 button {
@@ -222,6 +227,11 @@ button {
 button:hover {
     background: #42828A;
     color: #353535;
+}
+
+p {
+    font-size: 1.2rem;
+    margin-top: 30px;
 }
 
 .alert_container {

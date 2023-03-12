@@ -72,7 +72,7 @@
                     <button id="btnReset">Reset</button>
                 </div>
                 <p>
-                    <div class="section_title">Some general usage</div>
+                    <div class="section_title">General usage</div>
                     Click any swatch to copy the hex color to your clipboard
                     <ol>
                         <li>Put a starting hex color in color 1</li>
@@ -193,7 +193,17 @@
 
             // If only valid characters are used, check index of # or if one exists
             if (inputtxt.value.indexOf("#") === 0 || !inputtxt.value.includes("#")) {
-                return inputtxt.value = inputtxt.value.replace(/\s/g, "");
+
+                // Split the input into array
+                const count = (inputtxt.value.split("#").length - 1);
+                
+                // Detects if multiple # are entered
+                if (count > 1) {
+                    return "";
+                } else {
+                    return inputtxt.value = inputtxt.value.replace(/\s/g, "");
+                }
+                
             } else {
                 return "";
             }
