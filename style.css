@@ -290,12 +290,12 @@ button:hover {
     .row {
         flex-direction: column;
     }
-    .column1 {
+    /* .column1 {
         margin-bottom: -400px;
     }
     .column2 {
         margin-bottom: -240px;
-    }
+    } */
     .swatch_container, .usage_container {
         display: none;
     }
