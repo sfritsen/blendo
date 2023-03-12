@@ -17,9 +17,13 @@
         <main class="row">
             <div class="col column1">
                 <div class="logo">
-                    <div>Blendo</div>
-                    <a href="https://www.buymeacoffee.com/sfritsen" target="_blank">Buy me a coffee!</a>
-                    <a href="https://github.com/sfritsen/blendo" target="_blank">Blendo on Github</a>
+                    <div class="title">Blendo</div>
+                    <div class="subtitle">
+                        <img class="icon" src="./bmc-logo-no-background.png" alt="github icon">
+                        <a class="icon_text" href="https://www.buymeacoffee.com/sfritsen" target="_blank">Buy me a coffee!</a>
+                        <img class="icon" src="./github.png" alt="github icon">
+                        <a class="icon_text" href="https://github.com/sfritsen/blendo" target="_blank">Blendo on Github</a>    
+                    </div>
                 </div>
                 <div class="section_title">20 Random Color Swatches</div>
                 <div id="color-swatch-container"></div>
@@ -184,7 +188,6 @@
         // Allowed characters
         const validCharacters = /^[a-fA-F0-9#]+$/;
 
-        // TODO need to find a way to validate if hashtag is not at first spot
         // Check supplied input against valid characters
         if (validCharacters.test(inputtxt.value)) {
 

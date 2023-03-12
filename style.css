@@ -52,6 +52,37 @@ a:hover {
     margin-bottom: 20px;
 }
 
+.logo .title {
+    font-size: 4rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #171717;
+    letter-spacing: -6px;
+    -webkit-text-stroke: 2px #42828A;
+}
+.logo a {
+    margin-right: 16px;
+}
+
+.logo a:last-child {
+    margin-right: 0;
+}
+
+.subtitle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+}
+.icon_text {
+    font-weight: bold;
+}
+
 @keyframes gradient {
 	0% {
 		background-position: 0% 50%;
@@ -62,22 +93,6 @@ a:hover {
 	100% {
 		background-position: 0% 50%;
 	}
-}
-
-.logo div {
-    font-size: 4rem;
-    font-weight: 900;
-    text-transform: uppercase;
-    color: #171717;
-    letter-spacing: -6px;
-    -webkit-text-stroke: 2px #42828A;
-}
-.logo a {
-    margin-right: 20px;
-}
-
-.logo a:last-child {
-    margin-right: 0;
 }
 
 main {
