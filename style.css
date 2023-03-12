@@ -33,14 +33,6 @@ html, body {
     flex: 1 0 0%;
 }
 
-a:link, a:visited, a:active {
-    text-decoration: none;
-    color: #f4f4f4;
-}
-a:hover {
-    text-decoration: underline;
-}
-
 .logo {
     background: linear-gradient(-45deg, #23d5ab, #ee7752, #e73c7e, #23a6d5);
     animation: gradient 6s ease infinite;
@@ -95,6 +87,14 @@ a:hover {
 	}
 }
 
+a:link, a:visited, a:active {
+    text-decoration: none;
+    color: #f3f3f3;
+}
+a:hover {
+    text-decoration: underline;
+}
+
 main {
     display: flex;
     flex-grow: 1;
@@ -117,6 +117,7 @@ main {
     background-size: 400% 400%;
     border-left: 8px solid #404040;
     padding: 0;
+    height: 100vh;
 }
 
 .column3 > div {
