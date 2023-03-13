@@ -14,13 +14,33 @@ html, body {
     background: #f3f3f3;
     margin: 0;
     padding: 0;
+    /* width: 100vw; */
 }
 
-.container {
+/* .container {
     width: 100%;
+} */
+
+/* main {
+    display: flex;
+    flex-grow: 1;
+    height: 100vh;
+} */
+
+.wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    height: 100vh;
 }
 
-.row {
+.wrapper > * {
+    box-sizing: border-box;
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 100%;
+}
+
+/* .row {
     display: flex;
     flex-wrap: wrap;
 }
@@ -29,28 +49,6 @@ html, body {
     flex-shrink: 0;
     width: 100%;
     max-width: 100%;
-}
-
-
-/* @media (min-width: 768px) {
-    .container {
-        width: 100%;
-    }
-} */
-/* @media (min-width: 992px) {
-    .container {
-        width: 100%;
-    }
-} */
-/* @media (min-width: 1200px) {
-    .container {
-        max-width: 1140px;
-    }
-}
-@media (min-width: 1400px) {
-    .container {
-        max-width: 1320px;
-    }
 } */
 
 .col {
@@ -119,12 +117,6 @@ a:hover {
     text-decoration: underline;
 }
 
-main {
-    display: flex;
-    flex-grow: 1;
-    height: 100vh;
-}
-
 .column1{
     padding: var(--col-padding);
 }
@@ -132,7 +124,7 @@ main {
 .column2 {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    /* width: 100%; */
     padding: var(--col-padding);
 }
 
@@ -290,19 +282,40 @@ button:hover {
     .row {
         flex-direction: column;
     }
-    /* .column1 {
-        margin-bottom: -400px;
+    .col {
+        /* flex: 1 0 0%; */
+        flex-basis: auto;
     }
-    .column2 {
-        margin-bottom: -240px;
+    /* .logo {
+        margin-bottom: 10;
+    } */
+    .column1 {
+        padding-bottom: 0;
+        margin-bottom: -25px;
+    }
+    /* .column2 {
+        margin-top: 0;
+        margin-bottom: 0px;
     } */
     /* .swatch_container, .usage_container {
         display: none;
     } */
-    .usage_container {
+    .swatch_container, .usage_container {
         display: none;
     }
     .column3 {
         border-left: none;
+        height: 500px;
+    }
+    .subtitle {
+        font-size: 0.7rem;
+    }
+    .section_title {
+        font-size: 1.5rem;
+        margin-bottom: 4px;
+    }
+    input, select, button {
+        padding: 12px;
+        margin-bottom: 8px;
     }
 }

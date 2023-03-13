@@ -12,88 +12,86 @@
     <title>Blendo - Color Blender</title>
 </head>
 <body>
-    <div class="container">
 
-        <main class="row">
-            <div class="col column1">
-                <div class="logo">
-                    <div class="title">Blendo</div>
-                    <div class="subtitle">
-                        <img class="icon" src="./bmc-logo-no-background.png" alt="github icon">
-                        <a class="icon_text" href="https://www.buymeacoffee.com/sfritsen" target="_blank">Buy me a coffee!</a>
-                        <img class="icon" src="./github.png" alt="github icon">
-                        <a class="icon_text" href="https://github.com/sfritsen/blendo" target="_blank">Blendo on Github</a>    
-                    </div>
-                </div>
-                <div class="swatch_container">
-                    <div class="section_title">Random Color Swatches</div>
-                    <div class="swatches" id="random_swatch_container"></div>
-                </div>
-                <div class="swatch_container">
-                    <div class="section_title">Common Colors</div>
-                    <div class="swatches">
-                        <div class="ctc color-swatch" style="background: #FFFFFF; color: #333333;">#FFFFFF</div>
-                        <div class="ctc color-swatch" style="background: #f5f5dc; color: #333333;">#f5f5dc</div>
-                        <div class="ctc color-swatch" style="background: #C0C0C0; color: #333333;">#C0C0C0</div>
-                        <div class="ctc color-swatch" style="background: #808080; color: #333333;">#808080</div>
-                        <div class="ctc color-swatch" style="background: #000000; color: #e8e8e8;">#000000</div>           
-                        <div class="ctc color-swatch" style="background: #FFFF00; color: #333333;">#FFFF00</div>
-                        <div class="ctc color-swatch" style="background: #ffc0cb; color: #333333;">#ffc0cb</div>
-                        <div class="ctc color-swatch" style="background: #FF0000; color: #e8e8e8;">#FF0000</div>
-                        <div class="ctc color-swatch" style="background: #800000; color: #e8e8e8;">#800000</div>
-                        <div class="ctc color-swatch" style="background: #800080; color: #e8e8e8;">#800080</div>
-                        <div class="ctc color-swatch" style="background: #FF00FF; color: #e8e8e8;">#FF00FF</div>
-                        <div class="ctc color-swatch" style="background: #ffa500; color: #333333;">#ffa500</div>
-                        <div class="ctc color-swatch" style="background: #ff4500; color: #e8e8e8;">#ff4500</div>
-                        <div class="ctc color-swatch" style="background: #00FF00; color: #333333;">#00FF00</div>
-                        <div class="ctc color-swatch" style="background: #808000; color: #333333;">#808000</div>
-                        <div class="ctc color-swatch" style="background: #008000; color: #e8e8e8;">#008000</div>
-                        <div class="ctc color-swatch" style="background: #0000FF; color: #e8e8e8;">#0000FF</div>
-                        <div class="ctc color-swatch" style="background: #4682b4; color: #e8e8e8;">#4682b4</div>
-                        <div class="ctc color-swatch" style="background: #008080; color: #e8e8e8;">#008080</div>
-                        <div class="ctc color-swatch" style="background: #00FFFF; color: #333333">#00FFFF</div>
-                    </div>
+    <main class="wrapper">
+        <div class="col column1">
+            <div class="logo">
+                <div class="title">Blendo</div>
+                <div class="subtitle">
+                    <img class="icon" src="./bmc-logo-no-background.png" alt="github icon">
+                    <a class="icon_text" href="https://www.buymeacoffee.com/sfritsen" target="_blank">Buy me a coffee!</a>
+                    <img class="icon" src="./github.png" alt="github icon">
+                    <a class="icon_text" href="https://github.com/sfritsen/blendo" target="_blank">Blendo on Github</a>    
                 </div>
             </div>
-            <div class="col column2">
-                <div class="section_title">Select Color Range</div>
-                <input id="color1" maxlength="7" value="" placeholder="Hex Color 1">
-                <input id="color2" maxlength="7" value="" placeholder="Hex Color 2">
-                <div class="controls-row">
-                    <select id="numberOfBlends">
-                        <option selected>Blends</option>
-                        <option id="1">1</option>
-                        <option id="2">2</option>
-                        <option id="3">3</option>
-                        <option id="4">4</option>
-                        <option id="5">5</option>
-                        <option id="6">6</option>
-                        <option id="7">7</option>
-                        <option id="8">8</option>
-                        <option id="9">9</option>
-                        <option id="10">10</option>
-                    </select>
-                    <button id="btnReset">Reset</button>
-                </div>
-                <div class="usage_container">
-                    <div class="section_title">General usage</div>
-                    Click any swatch to copy the hex color to your clipboard
-                    <ol>
-                        <li>Put a starting hex color in color 1</li>
-                        <li>Select another hex you want to blend in color 2</li>
-                        <li>Choose how many blends you want</li>
-                        <li>#winning</li>
-                    </ol>
-
-                    <strong>Get creative and do not be afraid to experiment!</strong>
-                    If you need inspiration for colors, random swatches are generated on the left and will be refreshed on page reload.
-                </div>
-                <div class="alert_container" id="copied_alert"></div>
+            <div class="swatch_container">
+                <div class="section_title">Random Color Swatches</div>
+                <div class="swatches" id="random_swatch_container"></div>
             </div>
-            <div id="swatches" class="col column3"></div>
-        </main>
+            <div class="swatch_container">
+                <div class="section_title">Common Colors</div>
+                <div class="swatches">
+                    <div class="ctc color-swatch" style="background: #FFFFFF; color: #333333;">#FFFFFF</div>
+                    <div class="ctc color-swatch" style="background: #f5f5dc; color: #333333;">#f5f5dc</div>
+                    <div class="ctc color-swatch" style="background: #C0C0C0; color: #333333;">#C0C0C0</div>
+                    <div class="ctc color-swatch" style="background: #808080; color: #333333;">#808080</div>
+                    <div class="ctc color-swatch" style="background: #000000; color: #e8e8e8;">#000000</div>           
+                    <div class="ctc color-swatch" style="background: #FFFF00; color: #333333;">#FFFF00</div>
+                    <div class="ctc color-swatch" style="background: #ffc0cb; color: #333333;">#ffc0cb</div>
+                    <div class="ctc color-swatch" style="background: #FF0000; color: #e8e8e8;">#FF0000</div>
+                    <div class="ctc color-swatch" style="background: #800000; color: #e8e8e8;">#800000</div>
+                    <div class="ctc color-swatch" style="background: #800080; color: #e8e8e8;">#800080</div>
+                    <div class="ctc color-swatch" style="background: #FF00FF; color: #e8e8e8;">#FF00FF</div>
+                    <div class="ctc color-swatch" style="background: #ffa500; color: #333333;">#ffa500</div>
+                    <div class="ctc color-swatch" style="background: #ff4500; color: #e8e8e8;">#ff4500</div>
+                    <div class="ctc color-swatch" style="background: #00FF00; color: #333333;">#00FF00</div>
+                    <div class="ctc color-swatch" style="background: #808000; color: #333333;">#808000</div>
+                    <div class="ctc color-swatch" style="background: #008000; color: #e8e8e8;">#008000</div>
+                    <div class="ctc color-swatch" style="background: #0000FF; color: #e8e8e8;">#0000FF</div>
+                    <div class="ctc color-swatch" style="background: #4682b4; color: #e8e8e8;">#4682b4</div>
+                    <div class="ctc color-swatch" style="background: #008080; color: #e8e8e8;">#008080</div>
+                    <div class="ctc color-swatch" style="background: #00FFFF; color: #333333">#00FFFF</div>
+                </div>
+            </div>
+        </div>
+        <div class="col column2">
+            <div class="section_title">Select Color Range</div>
+            <input id="color1" maxlength="7" value="" placeholder="Hex Color 1">
+            <input id="color2" maxlength="7" value="" placeholder="Hex Color 2">
+            <div class="controls-row">
+                <select id="numberOfBlends">
+                    <option selected>Blends</option>
+                    <option id="1">1</option>
+                    <option id="2">2</option>
+                    <option id="3">3</option>
+                    <option id="4">4</option>
+                    <option id="5">5</option>
+                    <option id="6">6</option>
+                    <option id="7">7</option>
+                    <option id="8">8</option>
+                    <option id="9">9</option>
+                    <option id="10">10</option>
+                </select>
+                <button id="btnReset">Reset</button>
+            </div>
+            <div class="usage_container">
+                <div class="section_title">General usage</div>
+                Click any swatch to copy the hex color to your clipboard
+                <ol>
+                    <li>Put a starting hex color in color 1</li>
+                    <li>Select another hex you want to blend in color 2</li>
+                    <li>Choose how many blends you want</li>
+                    <li>#winning</li>
+                </ol>
 
-    </div>
+                <strong>Get creative and do not be afraid to experiment!</strong>
+                If you need inspiration for colors, random swatches are generated on the left and will be refreshed on page reload.
+            </div>
+            <div class="alert_container" id="copied_alert"></div>
+        </div>
+        <div id="swatches" class="col column3"></div>
+    </main>
+
 </body>
 </html>
 
