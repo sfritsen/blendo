@@ -182,14 +182,13 @@
         }
     }
 
-    document.getElementById("btnReset").addEventListener("click", (e) => {
-        document.getElementById("color1").value = "";
-        document.getElementById("color2").value = "";
-        document.getElementById("numberOfBlends").selectedIndex = 0;
-        swatches.innerHTML = '';
+    document.getElementById("color1").addEventListener("keyup", (e) => {
+        let color1 = document.getElementById("color1");
+        color1.value = validateInput(color1);
+        processHex();
     });
 
-    document.getElementById("color1").addEventListener("keyup", (e) => {
+    document.getElementById("color1").addEventListener("change", (e) => {
         let color1 = document.getElementById("color1");
         color1.value = validateInput(color1);
         processHex();
@@ -201,7 +200,20 @@
         processHex();
     });
 
+    document.getElementById("color2").addEventListener("change", (e) => {
+        let color2 = document.getElementById("color2");
+        color2.value = validateInput(color2);
+        processHex();
+    });
+
     document.getElementById("numberOfBlends").addEventListener("change", (e) => processHex() );
+
+    document.getElementById("btnReset").addEventListener("click", (e) => {
+        document.getElementById("color1").value = "";
+        document.getElementById("color2").value = "";
+        document.getElementById("numberOfBlends").selectedIndex = 0;
+        swatches.innerHTML = '';
+    });
 
     function validateInput(inputtxt) {
         // Allowed characters
