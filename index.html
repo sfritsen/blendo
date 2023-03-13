@@ -121,24 +121,21 @@
         navigator.clipboard.writeText(content);
 
         // Show alert if not on mobile
-        let width;
         if (window.innerWidth > 576) {
             copiedAlert.style.display = "flex";
             copiedAlert.style.backgroundColor = content;
-        }
-        // copiedAlert.style.display = "flex";
-        // copiedAlert.style.backgroundColor = content;
 
-        // Clear classList
-        copiedAlert.classList.remove('isLightBackground');
-        copiedAlert.classList.remove('isDarkBackground');
+            // Clear classList
+            copiedAlert.classList.remove('isLightBackground');
+            copiedAlert.classList.remove('isDarkBackground');
 
-        // Determine luminance for font color
-        const luminance = isLightColor(content);
-        if (luminance == true) {
-            copiedAlert.classList.add('isLightBackground');
-        } else {
-            copiedAlert.classList.add('isDarkBackground');
+            // Determine luminance for font color
+            const luminance = isLightColor(content);
+            if (luminance == true) {
+                copiedAlert.classList.add('isLightBackground');
+            } else {
+                copiedAlert.classList.add('isDarkBackground');
+            }
         }
 
         // Message to display in alert
