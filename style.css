@@ -268,13 +268,12 @@ button:hover {
     }
     .column2 {
         padding-top: 0;
-        /* padding-bottom: 0; */
     }
     .column3 {
         border-left: none;
         height: 500px;
     }
-    .swatch_container, .usage_container {
+    .swatch_container, .usage_container, .alert_container {
         display: none;
     }
     .subtitle {
