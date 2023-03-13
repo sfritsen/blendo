@@ -164,6 +164,9 @@
             const swatch = document.createElement('div');
             let swatchColor = '#'+getRandomHexColor();
 
+            swatch.classList.add('ctc');
+            swatch.classList.add('color-swatch');
+
             // Determine luminance for font color
             const luminance = isLightColor(swatchColor);
             if (luminance == true) {
@@ -172,8 +175,6 @@
                 swatch.classList.add('isDarkBackground');
             }
 
-            swatch.classList.add('ctc');
-            swatch.classList.add('color-swatch');
             swatch.style.backgroundColor = swatchColor;
             swatch.id = "hex" + swatchColor;
             swatch.innerHTML = swatchColor;
