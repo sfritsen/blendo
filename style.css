@@ -235,10 +235,12 @@ button:hover {
 }
 
 .alert_container {
-    display: flex;
+    display: none;
     align-items: start;
     justify-content: center;
-    height: 100%;
+    border: 4px solid var(--dark-color);
+    border-radius: 6px;
+    padding: 20px 0;
     text-transform: uppercase;
     font-size: 2rem;
     font-weight: 900;
@@ -273,7 +275,7 @@ button:hover {
         border-left: none;
         height: 500px;
     }
-    .swatch_container, .usage_container, .alert_container {
+    .swatch_container, .usage_container {
         display: none;
     }
     .subtitle {
