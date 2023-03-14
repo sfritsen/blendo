@@ -286,7 +286,10 @@ button:hover {
         border-left: none;
         height: 500px;
     }
-    .swatch_container, .usage_container {
+    /* .swatch_container, .usage_container {
+        display: none;
+    } */
+    .usage_container {
         display: none;
     }
     .subtitle {
