@@ -110,6 +110,37 @@
         processHex();
     });
 
+    // Process color inputs
+    document.getElementById("color1").addEventListener("keyup", (e) => processColor1());
+    document.getElementById("color1").addEventListener("change", (e) => processColor1());
+    document.getElementById("color1").addEventListener("paste", (e) => processColor1());
+    document.getElementById("color2").addEventListener("keyup", (e) => processColor2());
+    document.getElementById("color2").addEventListener("change", (e) => processColor2());
+    document.getElementById("color2").addEventListener("paste", (e) => processColor2());
+
+    function processColor1() {
+        let color1 = document.getElementById("color1");
+        color1.value = validateInput(color1);
+        processHex();
+    }
+
+    function processColor2() {
+        let color2 = document.getElementById("color2");
+        color2.value = validateInput(color2);
+        processHex();
+    }
+
+    // Event listener for blends select
+    document.getElementById("numberOfBlends").addEventListener("change", (e) => processHex() );
+
+    // Reset button
+    document.getElementById("btnReset").addEventListener("click", (e) => {
+        document.getElementById("color1").value = "";
+        document.getElementById("color2").value = "";
+        document.getElementById("numberOfBlends").selectedIndex = 0;
+        swatches.innerHTML = '';
+    });
+
     function ctcClickAdd() {
         const swatches = document.querySelectorAll('.ctc');
 
@@ -181,35 +212,6 @@
             waterfallContainer.appendChild(swatch);
         }
     }
-
-    // Process color inputs
-    document.getElementById("color1").addEventListener("keyup", (e) => processColor1());
-    document.getElementById("color1").addEventListener("change", (e) => processColor1());
-    document.getElementById("color2").addEventListener("keyup", (e) => processColor2());
-    document.getElementById("color2").addEventListener("change", (e) => processColor2());
-
-    function processColor1() {
-        let color1 = document.getElementById("color1");
-        color1.value = validateInput(color1);
-        processHex();
-    }
-
-    function processColor2() {
-        let color2 = document.getElementById("color2");
-        color2.value = validateInput(color2);
-        processHex();
-    }
-
-    // Event listener for blends select
-    document.getElementById("numberOfBlends").addEventListener("change", (e) => processHex() );
-
-    // Reset button
-    document.getElementById("btnReset").addEventListener("click", (e) => {
-        document.getElementById("color1").value = "";
-        document.getElementById("color2").value = "";
-        document.getElementById("numberOfBlends").selectedIndex = 0;
-        swatches.innerHTML = '';
-    });
 
     function validateInput(inputtxt) {
         // Allowed characters
