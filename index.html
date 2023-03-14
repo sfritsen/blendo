@@ -103,7 +103,10 @@
 
 <script type="text/javascript">
 
+    const swatchFillerText = '<span>Waiting for your colors</span>';
+
     window.addEventListener("load", function() {
+        document.getElementById('swatches').innerHTML = swatchFillerText;
         document.getElementById('copied_alert').style.display = 'none';
         generateColorGrid();
         ctcClickAdd();
@@ -138,7 +141,8 @@
         document.getElementById("color1").value = "";
         document.getElementById("color2").value = "";
         document.getElementById("numberOfBlends").selectedIndex = 0;
-        swatches.innerHTML = '';
+        swatches.innerHTML = swatchFillerText;
+        swatches.style.display = 'flex';
     });
 
     function ctcClickAdd() {
@@ -153,6 +157,9 @@
         // Get clicked contents
         const content = event.currentTarget.innerHTML;
         const copiedAlert = document.getElementById('copied_alert');
+
+        // Clear existing alert
+        copiedAlert.innerHTML = "";
         
         // Copy to clipboard
         navigator.clipboard.writeText(content);
@@ -168,18 +175,15 @@
 
             // Determine luminance for font color
             const luminance = isLightColor(content);
-            if (luminance == true) {
-                copiedAlert.classList.add('isLightBackground');
-            } else {
-                copiedAlert.classList.add('isDarkBackground');
-            }
+            let bgColor = (luminance === true) ? 'isLightBackground' : 'isDarkBackground';
+            copiedAlert.classList.add(bgColor);
         }
 
         // Message to display in alert
         copiedAlert.innerHTML = content + "<br>Copied";
 
         // Set the delay (in milliseconds)
-        const delay = 2000; // 2 seconds
+        const delay = 3000; // 3 seconds
 
         // Hide alert based on delay
         setTimeout(() => {
@@ -195,17 +199,13 @@
             const swatch = document.createElement('div');
             let swatchColor = '#'+getRandomHexColor();
 
-            swatch.classList.add('ctc');
-            swatch.classList.add('color-swatch');
-
             // Determine luminance for font color
             const luminance = isLightColor(swatchColor);
-            if (luminance == true) {
-                swatch.classList.add('isLightBackground');
-            } else {
-                swatch.classList.add('isDarkBackground');
-            }
+            let bgColor = (luminance === true) ? 'isLightBackground' : 'isDarkBackground';
 
+            swatch.classList.add('ctc');
+            swatch.classList.add('color-swatch');
+            swatch.classList.add(bgColor);
             swatch.style.backgroundColor = swatchColor;
             swatch.id = "hex" + swatchColor;
             swatch.innerHTML = swatchColor;
@@ -227,11 +227,7 @@
                 const count = (inputtxt.value.split("#").length - 1);
                 
                 // Detects if multiple # are entered
-                if (count > 1) {
-                    return "";
-                } else {
-                    return inputtxt.value = inputtxt.value.replace(/\s/g, "");
-                }
+                return count > 1 ? "" : inputtxt.value = inputtxt.value.replace(/\s/g, "");
                 
             } else {
                 return "";
@@ -251,7 +247,7 @@
         let swatches = document.getElementById("swatches");
 
         // Exit out if either color is empty
-        if (!color1 || !color2) return;
+        if (!color1 || !color2 || numberOfBlends === 'Blends') return;
 
         // Validate inputs
         color1 = hexColorValidation(color1);
@@ -259,6 +255,7 @@
 
         // Clear blend swatches
         swatches.innerHTML = '';
+        swatches.style.display = 'block';
 
         // Call midpoints function and pass the 2 colors
         const midpointColors = findMidpointColors(color1, color2, numberOfBlends);
@@ -275,17 +272,13 @@
             // Calculate height percentage for every needed new div
             const divPercentage = Math.round((100 / Number(totalDivs)) * 100) / 100;
 
-            // Create divs
-            let newDiv = document.createElement('div');
-
             // Determine luminance for font color
             const luminance = isLightColor(value); 
-            if (luminance == true) {
-                newDiv.classList.add('isLightBackground');
-            } else {
-                newDiv.classList.add('isDarkBackground');
-            }
+            let bgColor = (luminance === true) ? 'isLightBackground' : 'isDarkBackground';
 
+            // Create divs
+            let newDiv = document.createElement('div');
+            newDiv.classList.add(bgColor);
             newDiv.classList.add('ctc'); // Add copy to clipboard
             newDiv.innerHTML = value;
             newDiv.style.backgroundColor = value;
@@ -307,9 +300,7 @@
         const hashtag = hexColor.charAt(0);
 
         // Strip the leading hashtag if found
-        if (hashtag === "#") {
-            hexColor = hexColor.substring(1);
-        }
+        hashtag === "#" ? hexColor = hexColor.substring(1) : null;
 
         // If hexColor is 3, convert to 6 digit hex
         if (hexColor.length === 3) {
@@ -380,11 +371,7 @@
         const luminance = 0.2126 * red + 0.7152 * green + 0.0722 * blue;
 
         // Compare relative luminance to threshold value
-        if (luminance > 128) {
-            return true; // Is light color
-        } else {
-            return false; // Is dark color
-        }
+        return luminance > 128 ? true : false;
     }
 
     // Convert hex color strings to RGB

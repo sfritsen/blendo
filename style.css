@@ -112,6 +112,9 @@ a:hover {
 }
 
 .column3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: linear-gradient(-45deg, #ee7752, #23a6d5, #e73c7e, #23d5ab);
     animation: gradient 8s ease infinite;
     background-size: 400% 400%;
@@ -126,6 +129,12 @@ a:hover {
     justify-content: center;
     font-weight: bold;
     text-transform: uppercase;
+}
+
+.column3 span {
+    font-size: 2rem;
+    font-weight: 900;
+    text-align: center;
 }
 
 .controls-row {
