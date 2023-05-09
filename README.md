@@ -5,7 +5,7 @@
 
 Color Blender that takes 2 hex values and outputs the amount of blends you want.
 <br>
-[See it in action here on github.io](https://sfritsen.github.io/blendo/)
+[See it in action here](https://blendo.onrender.com)
 
 #### Features
 - 20 random hex colors (desktop view only)
